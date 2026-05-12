@@ -3,17 +3,473 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Reference &amp; Troubleshooting — Patricia Santa Ana</title>
+  <title>Troubleshooting — Patricia Santa Ana</title>
   <link rel="stylesheet" href="../css/style.css">
+  <style>
+    .project-context {
+      margin-bottom: 2rem;
+      padding: 1.25rem;
+      background: var(--color-card-bg);
+      border-radius: 12px;
+    }
+    .project-context p {
+      color: var(--color-text-muted);
+      font-size: 0.9rem;
+      line-height: 1.7;
+    }
+
+    .tabs {
+      display: flex;
+      gap: 0;
+      border-bottom: 1px solid var(--color-border);
+      margin-bottom: 0;
+    }
+    .tab-btn {
+      padding: 0.65rem 1.5rem;
+      font-family: var(--font-body);
+      font-size: 0.85rem;
+      font-weight: 500;
+      background: transparent;
+      border: none;
+      border-bottom: 2px solid transparent;
+      cursor: pointer;
+      color: var(--color-text-muted);
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .tab-btn:hover { color: var(--color-text); }
+    .tab-btn.active {
+      color: var(--color-text);
+      border-bottom-color: var(--color-accent);
+    }
+    .tab-content { display: none; }
+    .tab-content.active { display: block; }
+
+    .doc-sample {
+      border: 1px solid var(--color-border);
+      border-radius: 0 0 16px 16px;
+      overflow: hidden;
+      max-height: 70vh;
+      overflow-y: auto;
+    }
+    .doc-sample-header {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.75rem 1.25rem;
+      background: var(--color-card-bg);
+      border-bottom: 1px solid var(--color-border);
+      font-size: 0.8rem;
+      color: var(--color-text-muted);
+    }
+    .doc-sample-header .dot {
+      width: 10px; height: 10px;
+      border-radius: 50%;
+    }
+    .doc-sample-header .dot:nth-child(1) { background: #ff5f56; }
+    .doc-sample-header .dot:nth-child(2) { background: #ffbd2e; }
+    .doc-sample-header .dot:nth-child(3) { background: #27c93f; }
+    .doc-sample-header .url-bar {
+      flex: 1;
+      padding: 0.35rem 0.75rem;
+      background: var(--color-bg);
+      border-radius: 6px;
+      font-size: 0.8rem;
+    }
+    .doc-sample-body { padding: 2rem 2.5rem; }
+    .doc-sample-body h1 {
+      font-size: 2rem;
+      margin-bottom: 0.75rem;
+    }
+    .doc-sample-body .doc-desc {
+      color: var(--color-text-muted);
+      font-size: 1rem;
+      margin-bottom: 2rem;
+    }
+    .doc-sample-body h2 {
+      font-size: 1.25rem;
+      margin: 2rem 0 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--color-border);
+    }
+    .doc-sample-body h3 {
+      font-size: 1.05rem;
+      margin: 1.5rem 0 0.75rem;
+    }
+    .doc-sample-body h4 {
+      font-size: 1rem;
+      margin: 1.25rem 0 0.5rem;
+    }
+    .doc-sample-body p,
+    .doc-sample-body li {
+      color: var(--color-text-muted);
+      font-size: 0.9rem;
+      line-height: 1.7;
+    }
+    .doc-sample-body ul, .doc-sample-body ol {
+      padding-left: 0;
+      list-style: none;
+      margin-bottom: 1rem;
+    }
+    .doc-sample-body ul li, .doc-sample-body ol li {
+      position: relative;
+      padding-left: 1.4rem;
+      margin-bottom: 0.3rem;
+    }
+    .doc-sample-body ul li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+    }
+    .doc-sample-body ol { counter-reset: num; }
+    .doc-sample-body ol li {
+      counter-increment: num;
+      padding-left: 2rem;
+    }
+    .doc-sample-body ol li::before {
+      content: counter(num) ".";
+      position: absolute;
+      left: 0;
+      font-weight: 600;
+    }
+    .doc-sample-body code {
+      background: var(--color-card-bg);
+      padding: 0.15rem 0.4rem;
+      border-radius: 4px;
+      font-size: 0.85em;
+    }
+    .doc-note {
+      background: var(--color-card-bg);
+      border-left: 3px solid var(--color-accent);
+      padding: 1rem 1.25rem;
+      border-radius: 8px;
+      margin: 1.5rem 0;
+      font-size: 0.9rem;
+      color: var(--color-text-muted);
+    }
+    .doc-note strong { color: var(--color-text); }
+
+    .doc-sample-body table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1rem 0;
+      font-size: 0.9rem;
+    }
+    .doc-sample-body th, .doc-sample-body td {
+      border: 1px solid var(--color-border);
+      padding: 0.6rem 1rem;
+      text-align: left;
+    }
+    .doc-sample-body th {
+      background: var(--color-card-bg);
+      font-weight: 600;
+      color: var(--color-text);
+    }
+    .doc-sample-body td {
+      color: var(--color-text-muted);
+    }
+
+    .link-buttons {
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+      margin: 1rem 0;
+    }
+    .link-btn {
+      display: inline-block;
+      padding: 0.5rem 1.25rem;
+      background: var(--color-card-bg);
+      border: 1px solid var(--color-border);
+      border-radius: 8px;
+      font-size: 0.85rem;
+      color: var(--color-text);
+      text-decoration: none;
+      transition: border-color 0.2s;
+    }
+    .link-btn:hover {
+      border-color: var(--color-accent);
+    }
+    .link-btn code {
+      background: transparent;
+      padding: 0;
+    }
+
+    .markdown-wrap {
+      border: 1px solid var(--color-border);
+      border-radius: 0 0 16px 16px;
+      overflow: hidden;
+      max-height: 70vh;
+      overflow-y: auto;
+    }
+    .markdown-wrap pre {
+      margin: 0;
+      padding: 1.5rem 2rem;
+      background: #1a1a1a;
+      color: #e0e0e0;
+      font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', Consolas, monospace;
+      font-size: 0.82rem;
+      line-height: 1.7;
+      overflow-x: auto;
+      tab-size: 2;
+    }
+    body.dark-mode .markdown-wrap pre { background: #0d0d0d; }
+    .hl-cmt { color: #6a9955; }
+    .hl-kw  { color: #569cd6; }
+    .hl-str { color: #ce9178; }
+    .hl-fn  { color: #dcdcaa; }
+    .hl-prop { color: #9cdcfe; }
+    .hl-op  { color: #d4d4d4; }
+    .hl-link { color: #6cb6ff; }
+    .hl-bullet { color: #b392f0; }
+    .hl-bold { color: #e0e0e0; font-weight: 600; }
+    .hl-head { color: #e06c75; }
+    .hl-code { color: #b392f0; }
+  </style>
 </head>
 <body>
-  <div class="container" style="padding-top: 3rem;">
+  <div class="container" style="padding-top: 3rem; max-width: 950px;">
     <a href="../index.html" class="btn btn-primary" style="display: inline-block; margin-bottom: 2rem;">&larr; Back</a>
+    
     <div class="bubble slide-in">
-      <h2>Reference &amp; Troubleshooting</h2>
-      <p style="color: var(--color-text-muted); margin-bottom: 1.5rem;">Placeholder content for the Reference &amp; Troubleshooting project page.</p>
+      <h2>Troubleshooting</h2>
+      <p style="color: var(--color-text-muted); margin-bottom: 1.5rem;">
+        Resolve common issues with Cloudflare challenges, including loops and proxied hostnames.
+      </p>
+
+      <div class="project-context">
+        <p><strong>Context:</strong> Documentation sample from Cloudflare's Challenges product. This troubleshooting guide helps users resolve common issues with challenge pages and browser compatibility.</p>
+      </div>
+
+      <div class="tabs">
+        <button class="tab-btn active" data-tab="rendered">Rendered</button>
+        <button class="tab-btn" data-tab="markdown">Markdown</button>
+      </div>
+
+      <!-- Rendered tab -->
+      <div class="tab-content active" id="tab-rendered">
+        <div class="doc-sample">
+          <div class="doc-sample-header">
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="url-bar">developers.cloudflare.com / cloudflare-challenges / troubleshooting</span>
+          </div>
+          <div class="doc-sample-body">
+            <h1>Troubleshooting</h1>
+            <p class="doc-desc">Resolve common issues with Cloudflare challenges, including loops and proxied hostnames.</p>
+
+            <h2>Common issues</h2>
+
+            <h3>Proxied hostnames</h3>
+            <p>If your hostname is proxied through Cloudflare, visitors may experience challenges on your webpages.</p>
+            <br>
+            <p>Cloudflare issues challenges through the Challenge Platform, which is the same underlying technology powering Turnstile.</p>
+            <br>
+            <p>In contrast to our Challenge page offerings, Turnstile allows you to run challenges anywhere on your site in a less-intrusive way without requiring the use of Cloudflare's CDN.</p>
+
+            <h3>Deprecated browser support</h3>
+            <p>Challenges are not supported by Microsoft Internet Explorer. If you are currently using Internet Explorer, try using another modern web browser (Chrome, Safari, Firefox). If you are already using a modern web browser, make sure it is using the latest version.</p>
+
+            <h3>Referer header</h3>
+            <p>Your visitor's HTTP request contains a referer header set to the website that they came from. When they encounter and solve a Challenge Page, the request with the referer is sent to the origin, and the response to the request is served to the user. The JavaScript on the response page may read the value of <code>document.referer</code>, but it will not be accurate.</p>
+            <br>
+            <p>For example, a visitor coming from a given website is challenged by a WAF rule via an interstitial Challenge Page served by your domain. Once the visitor loads the website's home page, the <code>document.referer</code> value is your domain, not the origin website.</p>
+            <br>
+            <p>This affects tools like Google Analytics, which reads the referer from JavaScript, since it replaces the previous website that visitors came from.</p>
+            <br>
+            <p>You can add tracking scripts, such as the Google Tag Manager Javascript, within an existing Challenge Page to capture the correct referer header on the initial request.</p>
+
+            <p><strong>Example JavaScript</strong></p>
+            <pre style="background: var(--color-card-bg); padding: 1rem; border-radius: 8px; overflow-x: auto;"><code>&lt;script&gt;
+    (function () {
+      const gaIds = {
+        "&lt;YOUR_DOMAIN&gt;": "&lt;GA_TRACKING_ID&gt;",
+      };
+
+      const gaId = gaIds[window.location.hostname];
+
+      if (gaId) {
+        const src = "https://www.googletagmanager.com/gtag/js?id=";
+
+        const gaScript = document.createElement("script");
+        gaScript.src = src.concat(gaId);
+        document.body.appendChild(gaScript);
+
+        window.dataLayer = window.dataLayer || [];
+        function gtag() {
+          dataLayer.push(arguments);
+        }
+        gtag("js", new Date());
+        gtag("config", gaId);
+      } else {
+        console.warn(
+          "Google Analytics ID not found for host:",
+          window.location.hostname,
+        );
+      }
+    })();
+  &lt;/script&gt;
+&lt;/body&gt;</code></pre>
+
+            <h3>Cross-origin resource sharing (CORS) preflight requests</h3>
+            <p>Cross-origin resource sharing (CORS) preflight requests, or <code>OPTIONS</code>, exclude user credentials that include cookies. As a result, the <code>cf_clearance</code> cookie will not be sent with the request, causing it to fail to bypass a Challenge Page (Non-interactive, Managed, or Interactive Challenge).</p>
+
+            <h3>Challenges on Cloudflare-protected sites</h3>
+            <p>Cloudflare issues challenges to website visitors to protect against malicious activity, such as bot attacks and DDoS attempts. If a legitimate human visitor is unexpectedly challenged, the reason typically stems from a security feature flagging their request.</p>
+
+            <table>
+              <thead>
+                <tr>
+                  <th>Source</th>
+                  <th>Description</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>High threat score</strong></td>
+                  <td>IP addresses with a high-risk score trigger Challenges.</td>
+                </tr>
+                <tr>
+                  <td><strong>IP reputation</strong></td>
+                  <td>If your IP has a history of suspicious activity, it may be flagged.</td>
+                </tr>
+                <tr>
+                  <td><strong>Bot detection</strong></td>
+                  <td>Automated traffic resembling bots is filtered by Cloudflare.</td>
+                </tr>
+                <tr>
+                  <td><strong>Web Application Firewall (WAF) custom rules</strong></td>
+                  <td>Site owners may set rules targeting specific regions or user agents.</td>
+                </tr>
+                <tr>
+                  <td><strong>Browser Integrity Check</strong></td>
+                  <td>Cloudflare verifies that browsers meet certain standards.</td>
+                </tr>
+                <tr>
+                  <td><strong>Challenge Passage</strong></td>
+                  <td>Technologies like Privacy Pass reduce the frequency of repeated Challenges.</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <p>To avoid repeated challenges, visitors can take the following steps to ensure their environment does not trigger security checks:</p>
+            <ul>
+              <li>Ensure your web browser is updated to the latest stable version for full compatibility with modern challenge technologies.</li>
+              <li>Temporarily disable browser extensions, such as ad blockers or privacy tools, that may block standard browser headers or the necessary challenge scripts.</li>
+              <li>If your IP address has a poor reputation (often seen with shared VPNs or corporate proxies), try switching to a different, trusted network connection.</li>
+            </ul>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- Markdown tab -->
+      <div class="tab-content" id="tab-markdown">
+        <div class="markdown-wrap">
+<pre>---
+<span class="hl-prop">content_type</span>: <span class="hl-str">troubleshooting</span>
+<span class="hl-prop">title</span>: <span class="hl-str">Troubleshooting</span>
+<span class="hl-prop">description</span>: <span class="hl-str">Resolve common issues with Cloudflare challenges, including loops and proxied hostnames.</span>
+<span class="hl-prop">products</span>:
+  <span class="hl-bullet">-</span> <span class="hl-str">cloudflare-challenges</span>
+---
+
+<span class="hl-head">##</span> Common issues
+
+<span class="hl-head">###</span> Proxied hostnames
+
+If your hostname is proxied through Cloudflare, visitors may experience challenges on your webpages.
+
+Cloudflare issues challenges through the [Challenge Platform](/cloudflare-challenges/), which is the same underlying technology powering [Turnstile](/turnstile/).
+
+In contrast to our Challenge page offerings, Turnstile allows you to run challenges anywhere on your site in a less-intrusive way without requiring the use of Cloudflare's CDN.
+
+<span class="hl-head">###</span> Deprecated browser support
+
+Challenges are not supported by Microsoft Internet Explorer. If you are currently using Internet Explorer, try using another modern web browser (Chrome, Safari, Firefox). If you are already using a modern web browser, make sure it is using the latest version.
+
+<span class="hl-head">###</span> Referer header
+
+Your visitor's HTTP request contains a referer header set to the website that they came from. When they encounter and solve a Challenge Page, the request with the referer is sent to the origin, and the response to the request is served to the user. The JavaScript on the response page may read the value of <span class="hl-code">document.referer</span>, but it will not be accurate.
+
+For example, a visitor coming from a given website is challenged by a [WAF rule](/waf/custom-rules/) via an interstitial Challenge Page served by your domain. Once the visitor loads the website's home page, the <span class="hl-code">document.referer</span> value is your domain, not the origin website.
+
+This affects tools like Google Analytics, which reads the referer from JavaScript, since it replaces the previous website that visitors came from.
+
+You can add tracking scripts, such as the Google Tag Manager Javascript, within an existing [Challenge Page](/rules/custom-errors/) to capture the correct referer header on the initial request.
+
+<span class="hl-bold">Example JavaScript</span>
+
+<span class="hl-str">```html</span>
+&lt;script&gt;
+    (function () {
+      const gaIds = {
+        "&lt;YOUR_DOMAIN&gt;": "&lt;GA_TRACKING_ID&gt;",
+      };
+
+      const gaId = gaIds[window.location.hostname];
+
+      if (gaId) {
+        const src = "https://www.googletagmanager.com/gtag/js?id=";
+
+        const gaScript = document.createElement("script");
+        gaScript.src = src.concat(gaId);
+        document.body.appendChild(gaScript);
+
+        window.dataLayer = window.dataLayer || [];
+        function gtag() {
+          dataLayer.push(arguments);
+        }
+        gtag("js", new Date());
+        gtag("config", gaId);
+      } else {
+        console.warn(
+          "Google Analytics ID not found for host:",
+          window.location.hostname,
+        );
+      }
+    })();
+  &lt;/script&gt;
+&lt;/body&gt;
+<span class="hl-str">```</span>
+
+<span class="hl-head">###</span> Cross-origin resource sharing (CORS) preflight requests
+
+Cross-origin resource sharing (CORS) preflight requests, or <span class="hl-code">OPTIONS</span>, exclude user credentials that include cookies. As a result, the <span class="hl-code">cf_clearance</span> cookie will not be sent with the request, causing it to fail to bypass a Challenge Page (Non-interactive, Managed, or Interactive Challenge).
+
+<span class="hl-head">###</span> Challenges on Cloudflare-protected sites
+
+Cloudflare issues challenges to website visitors to protect against malicious activity, such as bot attacks and DDoS attempts. If a legitimate human visitor is unexpectedly challenged, the reason typically stems from a security feature flagging their request.
+
+| Source | Description |
+| --- | --- |
+| High threat score | IP addresses with a high-risk score trigger Challenges. |
+| IP reputation | If your IP has a history of suspicious activity, it may be flagged. |
+| Bot detection | Automated traffic resembling bots is filtered by Cloudflare. |
+| Web Application Firewall (WAF) custom rules | Site owners may set rules targeting specific regions or user agents. |
+| Browser Integrity Check | Cloudflare verifies that browsers meet certain standards. |
+| Challenge Passage | Technologies like Privacy Pass reduce the frequency of repeated Challenges. |
+
+To avoid repeated challenges, visitors can take the following steps to ensure their environment does not trigger security checks:
+
+<span class="hl-bullet">-</span> Ensure your web browser is updated to the latest stable version for full compatibility with modern challenge technologies.
+<span class="hl-bullet">-</span> Temporarily disable browser extensions, such as ad blockers or privacy tools, that may block standard browser headers or the necessary challenge scripts.
+<span class="hl-bullet">-</span> If your IP address has a poor reputation (often seen with shared VPNs or corporate proxies), try switching to a different, trusted network connection.</pre>
+        </div>
+      </div>
+
     </div>
   </div>
-  <script src="../js/main.js"></script>
+
+  <script>
+    // Tab switching
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+        document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+        btn.classList.add('active');
+        document.getElementById('tab-' + btn.dataset.tab).classList.add('active');
+      });
+    });
+  </script>
 </body>
 </html>
