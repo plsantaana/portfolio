@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Get Started Guide — Patricia Santa Ana</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    .project-context {
+      margin-bottom: 2rem;
+      padding: 1.25rem;
+      background: var(--color-card-bg);
+      border-radius: 12px;
+    }
+    .project-context p {
+      color: var(--color-text-muted);
+      font-size: 0.9rem;
+      line-height: 1.7;
+    }
+
+    .tabs {
+      display: flex;
+      gap: 0;
+      border-bottom: 1px solid var(--color-border);
+      margin-bottom: 0;
+    }
+    .tab-btn {
+      padding: 0.65rem 1.5rem;
+      font-family: var(--font-body);
+      font-size: 0.85rem;
+      font-weight: 500;
+      background: transparent;
+      border: none;
+      border-bottom: 2px solid transparent;
+      cursor: pointer;
+      color: var(--color-text-muted);
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .tab-btn:hover { color: var(--color-text); }
+    .tab-btn.active {
+      color: var(--color-text);
+      border-bottom-color: var(--color-accent);
+    }
+    .tab-content { display: none; }
+    .tab-content.active { display: block; }
+
+    .doc-sample {
+      border: 1px solid var(--color-border);
+      border-radius: 0 0 16px 16px;
+      overflow: hidden;
+      max-height: 70vh;
+      overflow-y: auto;
+    }
+    .doc-sample-header {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.75rem 1.25rem;
+      background: var(--color-card-bg);
+      border-bottom: 1px solid var(--color-border);
+      font-size: 0.8rem;
+      color: var(--color-text-muted);
+    }
+    .doc-sample-header .dot {
+      width: 10px; height: 10px;
+      border-radius: 50%;
+    }
+    .doc-sample-header .dot:nth-child(1) { background: #ff5f56; }
+    .doc-sample-header .dot:nth-child(2) { background: #ffbd2e; }
+    .doc-sample-header .dot:nth-child(3) { background: #27c93f; }
+    .doc-sample-header .url-bar {
+      flex: 1;
+      padding: 0.35rem 0.75rem;
+      background: var(--color-bg);
+      border-radius: 6px;
+      font-size: 0.8rem;
+    }
+    .doc-sample-body { padding: 2rem 2.5rem; }
+    .doc-sample-body h1 {
+      font-size: 2rem;
+      margin-bottom: 0.75rem;
+    }
+    .doc-sample-body .doc-desc {
+      color: var(--color-text-muted);
+      font-size: 1rem;
+      margin-bottom: 2rem;
+    }
+    .doc-sample-body h2 {
+      font-size: 1.25rem;
+      margin: 2rem 0 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--color-border);
+    }
+    .doc-sample-body h3 {
+      font-size: 1.05rem;
+      margin: 1.5rem 0 0.75rem;
+    }
+    .doc-sample-body h4 {
+      font-size: 1rem;
+      margin: 1.25rem 0 0.5rem;
+    }
+    .doc-sample-body p,
+    .doc-sample-body li {
+      color: var(--color-text-muted);
+      font-size: 0.9rem;
+      line-height: 1.7;
+    }
+    .doc-sample-body ul, .doc-sample-body ol {
+      padding-left: 0;
+      list-style: none;
+      margin-bottom: 1rem;
+    }
+    .doc-sample-body ul li, .doc-sample-body ol li {
+      position: relative;
+      padding-left: 1.4rem;
+      margin-bottom: 0.3rem;
+    }
+    .doc-sample-body ul li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+    }
+    .doc-sample-body ol { counter-reset: num; }
+    .doc-sample-body ol li {
+      counter-increment: num;
+      padding-left: 2rem;
+    }
+    .doc-sample-body ol li::before {
+      content: counter(num) ".";
+      position: absolute;
+      left: 0;
+      font-weight: 600;
+    }
+    .doc-sample-body code {
+      background: var(--color-card-bg);
+      padding: 0.15rem 0.4rem;
+      border-radius: 4px;
+      font-size: 0.85em;
+    }
+    .doc-note {
+      background: var(--color-card-bg);
+      border-left: 3px solid var(--color-accent);
+      padding: 1rem 1.25rem;
+      border-radius: 8px;
+      margin: 1.5rem 0;
+      font-size: 0.9rem;
+      color: var(--color-text-muted);
+    }
+    .doc-note strong { color: var(--color-text); }
+
+    .doc-sample-body table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1rem 0;
+      font-size: 0.9rem;
+    }
+    .doc-sample-body th, .doc-sample-body td {
+      border: 1px solid var(--color-border);
+      padding: 0.6rem 1rem;
+      text-align: left;
+    }
+    .doc-sample-body th {
+      background: var(--color-card-bg);
+      font-weight: 600;
+      color: var(--color-text);
+    }
+    .doc-sample-body td {
+      color: var(--color-text-muted);
+    }
+
+    .link-buttons {
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+      margin: 1rem 0;
+    }
+    .link-btn {
+      display: inline-block;
+      padding: 0.5rem 1.25rem;
+      background: var(--color-card-bg);
+      border: 1px solid var(--color-border);
+      border-radius: 8px;
+      font-size: 0.85rem;
+      color: var(--color-text);
+      text-decoration: none;
+      transition: border-color 0.2s;
+    }
+    .link-btn:hover {
+      border-color: var(--color-accent);
+    }
+    .link-btn code {
+      background: transparent;
+      padding: 0;
+    }
+
+    .markdown-wrap {
+      border: 1px solid var(--color-border);
+      border-radius: 0 0 16px 16px;
+      overflow: hidden;
+      max-height: 70vh;
+      overflow-y: auto;
+    }
+    .markdown-wrap pre {
+      margin: 0;
+      padding: 1.5rem 2rem;
+      background: #1a1a1a;
+      color: #e0e0e0;
+      font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', Consolas, monospace;
+      font-size: 0.82rem;
+      line-height: 1.7;
+      overflow-x: auto;
+      tab-size: 2;
+    }
+    body.dark-mode .markdown-wrap pre { background: #0d0d0d; }
+    .hl-cmt { color: #6a9955; }
+    .hl-kw  { color: #569cd6; }
+    .hl-str { color: #ce9178; }
+    .hl-fn  { color: #dcdcaa; }
+    .hl-prop { color: #9cdcfe; }
+    .hl-op  { color: #d4d4d4; }
+    .hl-link { color: #6cb6ff; }
+    .hl-bullet { color: #b392f0; }
+    .hl-bold { color: #e0e0e0; font-weight: 600; }
+    .hl-head { color: #e06c75; }
+    .hl-code { color: #b392f0; }
+  </style>
+</head>
+<body>
+  <div class="container" style="padding-top: 3rem; max-width: 950px;">
+    <a href="../index.html" class="btn btn-primary" style="display: inline-block; margin-bottom: 2rem;">&larr; Back
+    <div class="bubble slide-in">
+      <h2>Get Started Guide</h2>
+      <p style="color: var(--color-text-muted); margin-bottom: 1.5rem;">
+        Set up Turnstile to verify visitors without a traditional CAPTCHA, from widget creation to server-side validation.
+      </p>
+
+      <div class="project-context">
+        <p><strong>Context:</strong> Documentation sample from Cloudflare's Turnstile product. The page is written in Visual Studio Code and uses MDX, a Markdown-based authoring format, with custom components.</p>
+      </div>
+
+      <div class="tabs">
+        <button class="tab-btn active" data-tab="rendered">Rendered</button>
+        <button class="tab-btn" data-tab="markdown">Markdown</button>
+      </div>
+
+      <!-- Rendered tab -->
+      <div class="tab-content active" id="tab-rendered">
+        <div class="doc-sample">
+          <div class="doc-sample-header">
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="url-bar">developers.cloudflare.com / turnstile / get-started</span>
+          </div>
+          <div class="doc-sample-body">
+            <h1>Get started</h1>
+            <p class="doc-desc">Set up Turnstile to verify visitors without a traditional CAPTCHA.</p>
+
+            <p>Turnstile protects your website forms from bots. It works in two steps: a JavaScript widget runs challenges in the visitor's browser and produces a token, then your server sends that token to Cloudflare to confirm it is valid. This guide covers how to set up both steps.</p>
+
+            <h2>Prerequisites</h2>
+            <p>Before you begin, you must have:</p>
+            <ul>
+              <li>A Cloudflare account</li>
+              <li>A website or web application to protect</li>
+              <li>Basic knowledge of HTML and your preferred server-side language</li>
+            </ul>
+
+            <hr style="border: none; border-top: 1px solid var(--color-border); margin: 2rem 0;">
+
+            <h2>Process</h2>
+            <p>A Turnstile widget is an instance of Turnstile embedded on your webpage. Each widget has a <strong>sitekey</strong> (a public identifier you place in your HTML) and a <strong>secret key</strong> (a private credential your server uses to validate tokens).</p>
+            <p>Each widget gets its own unique sitekey and secret key pair, and options for configurations.</p>
+
+            <table>
+              <thead>
+                <tr>
+                  <th>Component</th>
+                  <th>Description</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Sitekey</strong></td>
+                  <td>Public key used to invoke the Turnstile widget on your site.</td>
+                </tr>
+                <tr>
+                  <td><strong>Secret key</strong></td>
+                  <td>Private key used for server-side token validation.</td>
+                </tr>
+                <tr>
+                  <td><strong>Configurations</strong></td>
+                  <td>Mode, hostnames, appearance settings, and other options.</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <div class="doc-note">
+              <strong>Important</strong><br>Regardless of how you create and manage your widgets, you will still need to embed the widget on your webpage and validate the token on your server.
+            </div>
+
+            <p>Implementing Turnstile involves two essential components that work together:</p>
+            <ol>
+              <li><strong>Client-side:</strong> Embed the widget — Add the Turnstile widget to your webpage to challenge visitors and generate tokens. A token is a string (up to 2,048 characters) generated when the visitor completes a challenge.</li>
+              <li><strong>Server-side:</strong> Validate the token — Send tokens to Cloudflare's Siteverify API to confirm they are authentic and have not been tampered with.</li>
+            </ol>
+
+            <p>Turnstile is designed to be an independent service. You can use Turnstile on any website, regardless of whether it is proxied through the Cloudflare network. This allows for flexible deployment across multi-cloud environments, on-premises infrastructure, or sites using other CDNs. The client-side widget and server-side validation steps are completely self-contained.</p>
+
+            <h2>Implementation</h2>
+            <p>Follow the steps below to implement Turnstile.</p>
+
+            <h3>1. Create your widget</h3>
+            <p>First, you must create a Turnstile widget to get your sitekey and secret key.</p>
+            <p>Select your preferred implementation method:</p>
+            <div class="link-buttons">
+              <a href="#" class="link-btn">Cloudflare dashboard
+              <a href="#" class="link-btn">API
+              <a href="#" class="link-btn">Terraform
+            </div>
+
+            <h3>2. Embed the widget</h3>
+            <p>Add the Turnstile widget to your webpage forms and applications.</p>
+            <p>Refer to Embed the widget to learn more about implicit and explicit rendering methods.</p>
+
+            <div class="doc-note">
+              <strong>Testing</strong><br>You can test your Turnstile widget on your webpage without triggering an actual Cloudflare Challenge by using a testing sitekey.
+            </div>
+
+            <h3>3. Validate tokens</h3>
+            <p>Implement server-side validation to verify the tokens generated by your widgets.</p>
+            <p>Refer to Validate the token to secure your implementation with proper token verification.</p>
+
+            <div class="doc-note">
+              <strong>Testing</strong><br>You can test the dummy token generated with testing sitekey via Siteverify API with the testing secret key. Your production secret keys will reject dummy tokens.
+            </div>
+
+            <h2>Additional implementation options</h2>
+
+            <h3>Mobile configuration</h3>
+            <p>Special considerations are necessary for mobile applications and WebView implementations.</p>
+            <p>Refer to Mobile implementation for more information on mobile application integration.</p>
+
+            <h3>Migration from other CAPTCHAs</h3>
+            <p>If you are currently using reCAPTCHA, hCaptcha, or another CAPTCHA service, Turnstile can be a drop-in replacement. You can copy and paste our script wherever you have deployed the existing script today.</p>
+            <p>Refer to Migration for step-by-step migration guidance from other CAPTCHA services.</p>
+
+            <hr style="border: none; border-top: 1px solid var(--color-border); margin: 2rem 0;">
+
+            <h2>Security requirements</h2>
+            <ul>
+              <li><strong>Server-side validation is mandatory.</strong> It is critical to enforce Turnstile tokens with the Siteverify API. The Turnstile token could be invalid, expired, or already redeemed. Not verifying the token will leave major vulnerabilities in your implementation. You must call Siteverify to complete your Turnstile configuration. Otherwise, it is incomplete and will result in zeroes for token validation when viewing your metrics in Turnstile Analytics.</li>
+              <li><strong>Tokens expire after 300 seconds (5 minutes).</strong> Each token can only be validated once. Expired or used tokens must be replaced with fresh challenges.</li>
+            </ul>
+
+            <h2>Best practices</h2>
+
+            <h3>Security</h3>
+            <ul>
+              <li>Protect your secret keys. Never expose secret keys in client-side code.</li>
+              <li>Rotate your keys regularly. Use API or dashboard to rotate secret keys periodically.</li>
+              <li>Restrict your hostnames. Only allow widgets on domains that you control.</li>
+              <li>Monitor the usage. Use analytics to detect unusual patterns.</li>
+            </ul>
+
+            <h3>Operational</h3>
+            <ul>
+              <li>Use descriptive names. Name widgets based on their purpose, such as "Login Form" or "Contact Page".</li>
+              <li>Separate your environments. Use different widgets for development, staging, and production.</li>
+              <li>Keep track of which widgets are used at which locations.</li>
+              <li>Store your widget configurations in version control when using Terraform.</li>
+            </ul>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- Markdown tab -->
+      <div class="tab-content" id="tab-markdown">
+        <div class="markdown-wrap">
+<pre>---
+<span class="hl-prop">title</span>: <span class="hl-str">Get started</span>
+<span class="hl-prop">pcx_content_type</span>: <span class="hl-str">get-started</span>
+<span class="hl-prop">description</span>: <span class="hl-str">Set up Turnstile to verify visitors without a traditional CAPTCHA.</span>
+<span class="hl-prop">products</span>:
+  <span class="hl-bullet">-</span> <span class="hl-str">turnstile</span>
+<span class="hl-prop">tags</span>:
+  <span class="hl-bullet">-</span> <span class="hl-str">Forms</span>
+<span class="hl-prop">sidebar</span>:
+  <span class="hl-prop">order</span>: <span class="hl-op">4</span>
+---
+
+<span class="hl-kw">import</span> { <span class="hl-fn">Render</span>, <span class="hl-fn">LinkButton</span>, <span class="hl-fn">GlossaryTooltip</span> } <span class="hl-kw">from</span> <span class="hl-str">"~/components"</span>;
+
+Turnstile protects your website forms from bots. It works in two steps: a JavaScript widget runs challenges in the visitor's browser and produces a token, then your server sends that token to Cloudflare to confirm it is valid. This guide covers how to set up both steps.
+
+<span class="hl-head">##</span> Prerequisites
+
+Before you begin, you must have:
+
+<span class="hl-bullet">-</span> [A Cloudflare account](/fundamentals/account/create-account/)
+<span class="hl-bullet">-</span> A website or web application to protect
+<span class="hl-bullet">-</span> Basic knowledge of HTML and your preferred server-side language
+
+---
+
+<span class="hl-head">##</span> Process
+
+A Turnstile widget is an instance of Turnstile embedded on your webpage. Each widget has a &lt;GlossaryTooltip term="sitekey"&gt;sitekey&lt;/GlossaryTooltip&gt; (a public identifier you place in your HTML) and a &lt;GlossaryTooltip term="secret key"&gt;secret key&lt;/GlossaryTooltip&gt; (a private credential your server uses to validate tokens).
+
+&lt;Render file="widget-components" product="turnstile" /&gt;
+
+<span class="hl-head">:::</span><span class="hl-prop">note</span>[Important]
+
+Regardless of how you create and manage your widgets, you will still need to [embed the widget](/turnstile/get-started/client-side-rendering/) on your webpage and [validate the token](/turnstile/get-started/server-side-validation/) on your server.
+<span class="hl-head">::</span>
+
+Implementing Turnstile involves two essential components that work together:
+
+1. Client-side: [Embed the widget](/turnstile/get-started/client-side-rendering/)
+
+   Add the Turnstile widget to your webpage to challenge visitors and generate tokens. A token is a string (up to 2,048 characters) generated when the visitor completes a challenge.
+
+2. Server-side: [Validate the token](/turnstile/get-started/server-side-validation/)
+
+   Send tokens to Cloudflare's [Siteverify API](/turnstile/get-started/server-side-validation/) — the endpoint for validating Turnstile tokens — to confirm they are authentic and have not been tampered with.
+
+Turnstile is designed to be an independent service. You can use Turnstile on any website, regardless of whether it is proxied through the Cloudflare network. This allows for flexible deployment across multi-cloud environments, on-premises infrastructure, or sites using other CDNs. The client-side widget and server-side validation steps are completely self-contained.
+
+Refer to [Implementation](#implementation) below for guidance on how to implement Turnstile on your website.
+
+---
+
+<span class="hl-head">##</span> Implementation
+
+Follow the steps below to implement Turnstile.
+
+<span class="hl-head">###</span> 1. Create your widget
+
+First, you must create a Turnstile widget to get your sitekey and secret key.
+
+Select your preferred implementation method:
+
+<span class="hl-bullet">-</span> [Cloudflare dashboard](/turnstile/get-started/widget-management/dashboard/)
+<span class="hl-bullet">-</span> [API](/turnstile/get-started/widget-management/api/)
+<span class="hl-bullet">-</span> [Terraform](/turnstile/get-started/widget-management/terraform/)
+
+<span class="hl-head">###</span> 2. Embed the widget
+
+Add the Turnstile widget to your webpage forms and applications.
+
+Refer to [Embed the widget](/turnstile/get-started/client-side-rendering/) to learn more about implicit and explicit rendering methods.
+
+<span class="hl-head">:::</span><span class="hl-prop">note</span>[Testing]
+
+You can test your Turnstile widget on your webpage without triggering an actual Cloudflare Challenge by using a testing sitekey.
+<span class="hl-head">::</span>
+
+<span class="hl-head">###</span> 3. Validate tokens
+
+Implement server-side validation to verify the tokens generated by your widgets.
+
+Refer to [Validate the token](/turnstile/get-started/server-side-validation/) to secure your implementation with proper token verification.
+
+<span class="hl-head">:::</span><span class="hl-prop">note</span>[Testing]
+
+You can test the dummy token generated with testing sitekey via Siteverify API with the testing secret key. Your production secret keys will reject dummy tokens.
+<span class="hl-head">::</span>
+
+<span class="hl-head">##</span> Additional implementation options
+
+<span class="hl-head">###</span> Mobile configuration
+
+Special considerations are necessary for mobile applications and WebView implementations.
+
+Refer to [Mobile implementation](/turnstile/get-started/mobile-implementation/) for more information on mobile application integration.
+
+<span class="hl-head">###</span> Migration from other CAPTCHAs
+
+If you are currently using reCAPTCHA, hCaptcha, or another CAPTCHA service, Turnstile can be a drop-in replacement. You can copy and paste our script wherever you have deployed the existing script today.
+
+Refer to [Migration](/turnstile/migration/) for step-by-step migration guidance from other CAPTCHA services.
+
+---
+
+<span class="hl-head">##</span> Security requirements
+
+<span class="hl-bullet">-</span> Server-side validation is mandatory. It is critical to enforce Turnstile tokens with the Siteverify API. The Turnstile token could be invalid, expired, or already redeemed. Not verifying the token will leave major vulnerabilities in your implementation. You must call Siteverify to complete your Turnstile configuration. Otherwise, it is incomplete and will result in zeroes for token validation when viewing your metrics in <span class="hl-code">[Turnstile Analytics](/turnstile/turnstile-analytics/)</span>.
+<span class="hl-bullet">-</span> Tokens expire after 300 seconds (5 minutes). Each token can only be validated once. Expired or used tokens must be replaced with fresh challenges.
+
+---
+
+<span class="hl-head">##</span> Best practices
+
+<span class="hl-head">###</span> Security
+
+<span class="hl-bullet">-</span> Protect your secret keys. Never expose secret keys in client-side code.
+<span class="hl-bullet">-</span> Rotate your keys regularly. Use API or dashboard to rotate secret keys periodically.
+<span class="hl-bullet">-</span> Restrict your hostnames. Only allow widgets on domains that you control.
+<span class="hl-bullet">-</span> Monitor the usage. Use analytics to detect unusual patterns.
+
+<span class="hl-head">###</span> Operational
+
+<span class="hl-bullet">-</span> Use descriptive names. Name widgets based on their purpose, such as "Login Form" or "Contact Page".
+<span class="hl-bullet">-</span> Separate your environments. Use different widgets for development, staging, and production.
+<span class="hl-bullet">-</span> Keep track of which widgets are used at which locations.
+<span class="hl-bullet">-</span> Store your widget configurations in version control when using Terraform.</pre>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    (function() {
+      var tabs = document.querySelectorAll('.tab-btn');
+      tabs.forEach(function(btn) {
+        btn.addEventListener('click', function() {
+          tabs.forEach(function(b) { b.classList.remove('active'); });
+          btn.classList.add('active');
+          document.querySelectorAll('.tab-content').forEach(function(c) { c.classList.remove('active'); });
+          var id = 'tab-' + btn.getAttribute('data-tab');
+          document.getElementById(id).classList.add('active');
+        });
+      });
+    })();
+  </script>
+  <script src="../js/main.js"></script>
+</body>
+</html>

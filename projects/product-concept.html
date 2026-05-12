@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product Concept — Patricia Santa Ana</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    .project-context {
+      margin-bottom: 2rem;
+      padding: 1.25rem;
+      background: var(--color-card-bg);
+      border-radius: 12px;
+    }
+    .project-context p {
+      color: var(--color-text-muted);
+      font-size: 0.9rem;
+      line-height: 1.7;
+    }
+
+    .tabs {
+      display: flex;
+      gap: 0;
+      border-bottom: 1px solid var(--color-border);
+      margin-bottom: 0;
+    }
+    .tab-btn {
+      padding: 0.65rem 1.5rem;
+      font-family: var(--font-body);
+      font-size: 0.85rem;
+      font-weight: 500;
+      background: transparent;
+      border: none;
+      border-bottom: 2px solid transparent;
+      cursor: pointer;
+      color: var(--color-text-muted);
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .tab-btn:hover { color: var(--color-text); }
+    .tab-btn.active {
+      color: var(--color-text);
+      border-bottom-color: var(--color-accent);
+    }
+    .tab-content { display: none; }
+    .tab-content.active { display: block; }
+
+    .doc-sample {
+      border: 1px solid var(--color-border);
+      border-radius: 0 0 16px 16px;
+      overflow: hidden;
+      max-height: 70vh;
+      overflow-y: auto;
+    }
+    .doc-sample-header {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.75rem 1.25rem;
+      background: var(--color-card-bg);
+      border-bottom: 1px solid var(--color-border);
+      font-size: 0.8rem;
+      color: var(--color-text-muted);
+    }
+    .doc-sample-header .dot {
+      width: 10px; height: 10px;
+      border-radius: 50%;
+    }
+    .doc-sample-header .dot:nth-child(1) { background: #ff5f56; }
+    .doc-sample-header .dot:nth-child(2) { background: #ffbd2e; }
+    .doc-sample-header .dot:nth-child(3) { background: #27c93f; }
+    .doc-sample-header .url-bar {
+      flex: 1;
+      padding: 0.35rem 0.75rem;
+      background: var(--color-bg);
+      border-radius: 6px;
+      font-size: 0.8rem;
+    }
+    .doc-sample-body { padding: 2rem 2.5rem; }
+    .doc-sample-body h1 {
+      font-size: 2rem;
+      margin-bottom: 0.75rem;
+    }
+    .doc-sample-body .doc-desc {
+      color: var(--color-text-muted);
+      font-size: 1rem;
+      margin-bottom: 2rem;
+    }
+    .doc-sample-body h2 {
+      font-size: 1.25rem;
+      margin: 2rem 0 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--color-border);
+    }
+    .doc-sample-body h3 {
+      font-size: 1.05rem;
+      margin: 1.5rem 0 0.75rem;
+    }
+    .doc-sample-body h4 {
+      font-size: 1rem;
+      margin: 1.25rem 0 0.5rem;
+    }
+    .doc-sample-body p,
+    .doc-sample-body li {
+      color: var(--color-text-muted);
+      font-size: 0.9rem;
+      line-height: 1.7;
+    }
+    .doc-sample-body ul, .doc-sample-body ol {
+      padding-left: 0;
+      list-style: none;
+      margin-bottom: 1rem;
+    }
+    .doc-sample-body ul li, .doc-sample-body ol li {
+      position: relative;
+      padding-left: 1.4rem;
+      margin-bottom: 0.3rem;
+    }
+    .doc-sample-body ul li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+    }
+    .doc-sample-body ol { counter-reset: num; }
+    .doc-sample-body ol li {
+      counter-increment: num;
+      padding-left: 2rem;
+    }
+    .doc-sample-body ol li::before {
+      content: counter(num) ".";
+      position: absolute;
+      left: 0;
+      font-weight: 600;
+    }
+    .doc-sample-body code {
+      background: var(--color-card-bg);
+      padding: 0.15rem 0.4rem;
+      border-radius: 4px;
+      font-size: 0.85em;
+    }
+    .doc-note {
+      background: var(--color-card-bg);
+      border-left: 3px solid var(--color-accent);
+      padding: 1rem 1.25rem;
+      border-radius: 8px;
+      margin: 1.5rem 0;
+      font-size: 0.9rem;
+      color: var(--color-text-muted);
+    }
+    .doc-note strong { color: var(--color-text); }
+
+    .flow-chart {
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0.5rem;
+      padding: 1.25rem;
+      margin: 1.5rem 0;
+      background: var(--color-card-bg);
+      border-radius: 10px;
+    }
+    .flow-chart .row {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .flow-chart .step {
+      background: var(--color-bg);
+      border: 1px solid var(--color-border);
+      padding: 0.5rem 1rem;
+      font-size: 0.85rem;
+      font-weight: 500;
+      border-radius: 8px;
+      text-align: center;
+    }
+    .flow-chart .step .sub {
+      font-weight: 400;
+      font-size: 0.75rem;
+    }
+    .flow-chart .arrow {
+      color: var(--color-text-muted);
+      font-size: 1.1rem;
+    }
+    .flow-chart figcaption {
+      font-size: 0.75rem;
+      color: var(--color-text-muted);
+      margin-top: 0.25rem;
+    }
+
+    .markdown-wrap {
+      border: 1px solid var(--color-border);
+      border-radius: 0 0 16px 16px;
+      overflow: hidden;
+    }
+    .markdown-wrap {
+      max-height: 70vh;
+      overflow-y: auto;
+    }
+    .markdown-wrap pre {
+      margin: 0;
+      padding: 1.5rem 2rem;
+      background: #1a1a1a;
+      color: #e0e0e0;
+      font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', Consolas, monospace;
+      font-size: 0.82rem;
+      line-height: 1.7;
+      overflow-x: auto;
+      tab-size: 2;
+    }
+    body.dark-mode .markdown-wrap pre { background: #0d0d0d; }
+    .hl-cmt { color: #6a9955; }
+    .hl-kw  { color: #569cd6; }
+    .hl-str { color: #ce9178; }
+    .hl-fn  { color: #dcdcaa; }
+    .hl-prop { color: #9cdcfe; }
+    .hl-op  { color: #d4d4d4; }
+    .hl-link { color: #6cb6ff; }
+    .hl-bullet { color: #b392f0; }
+    .hl-bold { color: #e0e0e0; font-weight: 600; }
+    .hl-head { color: #e06c75; }
+    .hl-code { color: #b392f0; }
+  </style>
+</head>
+<body>
+  <div class="container" style="padding-top: 3rem; max-width: 950px;">
+    <a href="../index.html" class="btn btn-primary" style="display: inline-block; margin-bottom: 2rem;">&larr; Back</a>
+    <div class="bubble slide-in">
+      <h2>Product Concept</h2>
+      <p style="color: var(--color-text-muted); margin-bottom: 1.5rem;">
+        Defined the vision, value proposition, and scope for Cloudflare's bot documentation product,
+        aligning cross-functional stakeholders around user needs.
+      </p>
+
+      <div class="project-context">
+        <p><strong>Context:</strong> Documentation sample from Cloudflare's Bot solutions. The page is written in Visual Studio Code and uses MDX, a Markdown-based authoring format, with custom components.</p>
+      </div>
+
+      <div class="tabs">
+        <button class="tab-btn active" data-tab="rendered">Rendered</button>
+        <button class="tab-btn" data-tab="markdown">Markdown</button>
+      </div>
+
+      <!-- Rendered tab -->
+      <div class="tab-content active" id="tab-rendered">
+        <div class="doc-sample">
+          <div class="doc-sample-header">
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="url-bar">developers.cloudflare.com / bots / concepts / bot</span>
+          </div>
+          <div class="doc-sample-body">
+            <h1>Bots</h1>
+            <p class="doc-desc">Automated software programs that interact with websites and APIs.</p>
+
+            <p>A <strong>bot</strong> is a software application programmed to do certain tasks. Bots can be used for good (chatbots, search engine crawlers) or for evil (inventory hoarding, credential stuffing).</p>
+
+            <div class="doc-note">
+              <strong>More information</strong><br>
+              For more background, refer to <a href="https://www.cloudflare.com/learning/bots/what-is-a-bot/" target="_blank">What is a bot?</a>
+            </div>
+
+            <h2>Verified bots and signed agents</h2>
+            <p>Cloudflare maintains an internal directory of <strong>verified bots</strong> and <strong>signed agents</strong> that are associated with search engine optimization (SEO), website monitoring, and more.</p>
+
+            <br>
+
+            <p>You can use this directory to prevent any bot protection measures from impacting otherwise helpful bots and agents, such as search crawlers.</p>
+
+            <br>
+
+            <h2>AI bots</h2>
+            <p>To prevent AI-related usage of your site content (such as training language models or generating search answers), you can turn on a managed rule that blocks known AI crawlers that use data for training models ("AI Bots"). A managed rule is a rule that Cloudflare maintains and updates — you turn it on, but you do not write or edit the rule yourself.</p>
+
+            <br>
+
+            <h3>Which bots are blocked</h3>
+            <p>When you enable this feature, Cloudflare will block the following bots:</p>
+
+            <ul>
+              <li><code>Amazonbot</code> (Amazon)</li>
+              <li><code>Applebot</code> (Apple)</li>
+              <li><code>Bytespider</code> (ByteDance)</li>
+              <li><code>ClaudeBot</code> (Anthropic)</li>
+              <li><code>DuckAssistBot</code> (DuckDuckGo)</li>
+              <li><code>Google-CloudVertexBot</code> (Google)</li>
+              <li><code>GoogleOther</code> (Google)</li>
+              <li><code>GPTBot</code> (OpenAI)</li>
+              <li><code>Meta-ExternalAgent</code> (Meta)</li>
+              <li><code>PetalBot</code> (Huawei)</li>
+              <li><code>TikTokSpider</code> (ByteDance)</li>
+              <li><code>CCBot</code> (Common Crawl)</li>
+            </ul>
+
+            <br>
+
+            <p>In addition to this list, <a href="https://radar.cloudflare.com/bots#verified-bots" target="_blank">verified bots</a> that are classified as AI crawlers, as well as a number of unverified bots that behave similarly, are included in the rule. This rule does not include verified bots that fall into the <code>Search Engine</code> categories.</p>
+
+            <br>
+
+            <p>These categories, and the bots classified in these categories, may change from time to time.</p>
+
+            <br>
+
+
+
+            <h3>How it works</h3>
+            <p>When you enable this feature, Cloudflare detects and blocks two categories of AI bots:</p>
+            <ul>
+              <li><strong>Well-behaved AI crawlers</strong> that comply with <code>robots.txt</code>, respect crawl rates, and do not hide their behavior from your website.</li>
+              <li><strong>Evasive AI crawlers</strong> that do not follow these conventions but are detected through additional signatures.</li>
+            </ul>
+
+            <br>
+
+            <h3>Rule evaluation order</h3>
+            <p>Cloudflare evaluates bot-related rules in a specific order. When a request matches a rule and receives a terminating action (such as block or challenge), it does not continue to later rules in the sequence.</p>
+            <br>
+            <ol>
+              <li><strong>Custom rules</strong> (WAF custom rules you create) — evaluated first.</li>
+              <li><strong>Block AI bots</strong> (the managed AI rule) — evaluated second.</li>
+              <li><strong>Other Super Bot Fight Mode rules</strong> (definitely automated, likely automated, verified bots) — evaluated last.</li>
+            </ol>
+
+            <br>
+
+            <p>The Block AI bots rule takes precedence over all other Super Bot Fight Mode rules. For example, if you have enabled <strong>Block AI bots</strong> and <strong>Allow verified bots</strong>, verified AI bots will still be blocked.</p>
+
+            <br>
+
+            <p>For Bot Management customers, custom rules run before the Block AI bots rule. If your custom rule challenges definitely automated traffic, AI bots will receive that challenge instead of reaching the Block AI bots rule. Because the challenge is a terminating action, Cloudflare does not evaluate the request against later rules in the sequence.</p>
+
+            <br>
+
+            <p>The SBFM settings for verified, definitely automated, and likely bots also affect evaluation. If these settings are set to <code>allow</code>, the request is not matched to any SBFM rule and proceeds to the next phase — where the Block AI bots rule can still block it. If the setting is <code>block</code>, the request is blocked in the earlier phase and does not reach the AI rule at all. If the setting is <code>challenge</code>, the request matches a rule and receives a terminating action, so it will not continue to later rules.</p>
+
+            <br>
+
+            <p>For self-serve non-Bot Management customers, all rules for verified, definitely automated, and likely bots run in the phase following the AI bots rule.</p>
+
+            <div class="flow-chart">
+              <div class="row">
+                <span class="step">Custom rules</span>
+                <span class="arrow">&rarr;</span>
+                <span class="step">Block AI bots<br><span class="sub">managed rule</span></span>
+                <span class="arrow">&rarr;</span>
+                <span class="step">Other SBFM<br><span class="sub">managed rules</span></span>
+              </div>
+              <figcaption>Super Bot Fight Mode and custom rules execution order diagram</figcaption>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- Markdown tab -->
+      <div class="tab-content" id="tab-markdown">
+        <div class="markdown-wrap">
+<pre>---
+content_type: concept
+title: Bots
+description: Automated software programs that interact with websites and APIs.
+products:
+  - bots
+sidebar:
+  order: 1
+---
+
+A **bot** is a software application programmed to do certain tasks.
+
+Bots can be used for good (chatbots, search engine crawlers) or for evil (inventory hoarding, credential stuffing).
+
+<span class="hl-head">:::</span><span class="hl-prop">note</span>[More information]
+
+For more background, refer to [What is a bot?](<span class="hl-link">https://www.cloudflare.com/learning/bots/what-is-a-bot/</span>).
+<span class="hl-head">::</span>
+
+<span class="hl-head">##</span> Verified bots and signed agents
+
+Cloudflare maintains an internal directory of [verified bot](/bots/concepts/bot/verified-bots/) and [signed agents](/bots/concepts/bot/signed-agents/) that are associated with search engine optimization (SEO), website monitoring, and more.
+You can use this directory to prevent any bot protection measures from impacting otherwise helpful bots and agents, such as search crawlers.
+&lt;Render file="verified-bots" product="bots" /&gt;
+<span class="hl-head">##</span> AI bots
+
+To prevent AI-related usage of your site content (such as training language models or generating search answers), you can turn on a managed rule that blocks known AI crawlers that use data for training models ("AI Bots"). A managed rule is a rule that Cloudflare maintains and updates — you turn it on, but you do not write or edit the rule yourself.
+
+<span class="hl-head">###</span> Which bots are blocked
+
+When you enable this feature, Cloudflare will block the following bots:
+
+<span class="hl-bullet">-</span> <span class="hl-code">`Amazonbot`</span> (Amazon)
+<span class="hl-bullet">-</span> <span class="hl-code">`Applebot`</span> (Apple)
+<span class="hl-bullet">-</span> <span class="hl-code">`Bytespider`</span> (ByteDance)
+<span class="hl-bullet">-</span> <span class="hl-code">`ClaudeBot`</span> (Anthropic)
+<span class="hl-bullet">-</span> <span class="hl-code">`DuckAssistBot`</span> (DuckDuckGo)
+<span class="hl-bullet">-</span> <span class="hl-code">`Google-CloudVertexBot`</span> (Google)
+<span class="hl-bullet">-</span> <span class="hl-code">`GoogleOther`</span> (Google)
+<span class="hl-bullet">-</span> <span class="hl-code">`GPTBot`</span> (OpenAI)
+<span class="hl-bullet">-</span> <span class="hl-code">`Meta-ExternalAgent`</span> (Meta)
+<span class="hl-bullet">-</span> <span class="hl-code">`PetalBot`</span> (Huawei)
+<span class="hl-bullet">-</span> <span class="hl-code">`TikTokSpider`</span> (ByteDance)
+<span class="hl-bullet">-</span> <span class="hl-code">`CCBot`</span> (Common Crawl)
+
+In addition to this list, verified bots that are classified as AI crawlers, as well as a number of unverified bots that behave similarly, are included in the rule. This rule does not include verified bots that fall into the <span class="hl-code">`Search Engine`</span> categories.
+
+These categories, and the bots classified in these categories, may change from time to time.
+
+<span class="hl-head">###</span> How it works
+
+When you enable this feature, Cloudflare detects and blocks two categories of AI bots:
+
+<span class="hl-bullet">-</span> **Well-behaved AI crawlers** that comply with <span class="hl-code">`robots.txt`</span>, respect crawl rates, and do not hide their behavior from your website.
+<span class="hl-bullet">-</span> **Evasive AI crawlers** that do not follow these conventions but are detected through additional signatures.
+
+<span class="hl-head">###</span> Rule evaluation order
+
+Cloudflare evaluates bot-related rules in a specific order. When a request matches a rule and receives a terminating action (such as block or challenge), it does not continue to later rules in the sequence.
+
+<span class="hl-bullet">1.</span> **Custom rules** (WAF custom rules you create) — evaluated first.
+<span class="hl-bullet">2.</span> **Block AI bots** (the managed AI rule) — evaluated second.
+<span class="hl-bullet">3.</span> **Other Super Bot Fight Mode rules** (definitely automated, likely automated, verified bots) — evaluated last.
+
+The Block AI bots rule takes precedence over all other Super Bot Fight Mode rules. For example, if you have enabled **Block AI bots** and **Allow verified bots**, verified AI bots will still be blocked.
+
+For Bot Management customers, custom rules run before the Block AI bots rule. If your custom rule challenges definitely automated traffic, AI bots will receive that challenge instead of reaching the Block AI bots rule. Because the challenge is a terminating action, Cloudflare does not evaluate the request against later rules in the sequence.
+
+The SBFM settings for verified, definitely automated, and likely bots also affect evaluation. If these settings are set to <span class="hl-code">`allow`</span>, the request is not matched to any SBFM rule and proceeds to the next phase — where the Block AI bots rule can still block it. If the setting is <span class="hl-code">`block`</span>, the request is blocked in the earlier phase and does not reach the AI rule at all. If the setting is <span class="hl-code">`challenge`</span>, the request matches a rule and receives a terminating action, so it will not continue to later rules.
+
+For self-serve non-Bot Management customers, all rules for verified, definitely automated, and likely bots run in the phase following the AI bots rule.
+
+&lt;Render file="execution-order" product="bots" /&gt;
+</pre>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    (function() {
+      var tabs = document.querySelectorAll('.tab-btn');
+      tabs.forEach(function(btn) {
+        btn.addEventListener('click', function() {
+          tabs.forEach(function(b) { b.classList.remove('active'); });
+          btn.classList.add('active');
+          document.querySelectorAll('.tab-content').forEach(function(c) { c.classList.remove('active'); });
+          var id = 'tab-' + btn.getAttribute('data-tab');
+          document.getElementById(id).classList.add('active');
+        });
+      });
+    })();
+  </script>
+  <script src="../js/main.js"></script>
+</body>
+</html>
