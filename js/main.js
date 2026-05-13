@@ -55,6 +55,7 @@
     document.body.classList.toggle('dark-mode', dark);
     if (toggle) {
       toggle.innerHTML = dark ? '&#x2600;&#xFE0E;' : '&#x23FE;';
+      toggle.classList.toggle('sun', dark);
       toggle.setAttribute('aria-label', dark ? 'Switch to light mode' : 'Switch to dark mode');
     }
   }
