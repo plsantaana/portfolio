@@ -20,6 +20,11 @@
     resumeBtn.addEventListener('click', openModal);
   }
 
+  var resumeTextBtn = document.getElementById('resume-text-btn');
+  if (resumeTextBtn && modal) {
+    resumeTextBtn.addEventListener('click', openModal);
+  }
+
   if (closeBtn && modal) {
     closeBtn.addEventListener('click', closeModal);
   }
@@ -49,7 +54,7 @@
   function applyTheme(dark) {
     document.body.classList.toggle('dark-mode', dark);
     if (toggle) {
-      toggle.innerHTML = dark ? '&#x2600;' : '&#x23FE;';
+      toggle.innerHTML = dark ? '&#x2600;&#xFE0E;' : '&#x23FE;';
       toggle.setAttribute('aria-label', dark ? 'Switch to light mode' : 'Switch to dark mode');
     }
   }
@@ -90,7 +95,6 @@
   var projectData = {
     'product-concept': {
       title: 'Product Concept',
-      description: 'Defined the vision, value proposition, and scope for Cloudflare\'s bot documentation product, aligning cross-functional stakeholders around user needs.',
       detail: [
         '<p><strong>Context:</strong> Documentation sample from Cloudflare\'s Bot solutions. The page is written in Visual Studio Code and uses MDX, a Markdown-based authoring format, with custom components.</p>',
         '<div style="display:flex;gap:0;border-bottom:1px solid var(--color-border);margin:1.25rem 0 0;">',
@@ -184,7 +188,6 @@
     },
     'get-started-guide': {
       title: 'Get Started Guide',
-      description: 'Provided step-by-step instructions for new users to set up, configure, and complete their first workflow with the product.',
       detail: [
         '<p><strong>Context:</strong> Documentation sample from Cloudflare\'s Turnstile product. The page is written in Visual Studio Code and uses MDX, a Markdown-based authoring format, with custom components.</p>',
         '<div style="display:flex;gap:0;border-bottom:1px solid var(--color-border);margin:1.25rem 0 0;">',
@@ -283,7 +286,6 @@
     },
     'reference-troubleshooting': {
       title: 'Reference & Troubleshooting',
-      description: 'Documentation sample from Cloudflare\'s Challenges product, helping users resolve common issues with challenge pages and browser compatibility.',
       detail: [
         '<p><strong>Context:</strong> Documentation sample from Cloudflare\'s Challenges product. The page is written in Visual Studio Code and uses MDX, a Markdown-based authoring format, with custom components.</p>',
         '<div style="display:flex;gap:0;border-bottom:1px solid var(--color-border);margin:1.25rem 0 0;">',
@@ -303,16 +305,16 @@
               '<p style="color:var(--color-text-muted);margin-bottom:1.5rem;font-size:0.95rem;">Resolve common issues with Cloudflare challenges, including loops and proxied hostnames.</p>',
               '<h3 style="font-size:1.1rem;margin:1.5rem 0 0.75rem;">Common issues</h3>',
               '<h4 style="font-size:1rem;margin:1.25rem 0 0.5rem;">Proxied hostnames</h4>',
-              '<p style="color:var(--color-text-muted);font-size:0.9rem;line-height:1.7;">If your hostname is proxied through Cloudflare, visitors may experience challenges on your webpages.</p>',
-              '<p style="color:var(--color-text-muted);font-size:0.9rem;line-height:1.7;">Cloudflare issues challenges through the Challenge Platform, which is the same underlying technology powering Turnstile.</p>',
-              '<p style="color:var(--color-text-muted);font-size:0.9rem;line-height:1.7;">In contrast to our Challenge page offerings, Turnstile allows you to run challenges anywhere on your site in a less-intrusive way without requiring the use of Cloudflare\'s CDN.</p>',
+              '<p style="color:var(--color-text-muted);font-size:0.9rem;line-height:1.7;margin-bottom:1rem;">If your hostname is proxied through Cloudflare, visitors may experience challenges on your webpages.</p>',
+              '<p style="color:var(--color-text-muted);font-size:0.9rem;line-height:1.7;margin-bottom:1rem;">Cloudflare issues challenges through the Challenge Platform, which is the same underlying technology powering Turnstile.</p>',
+              '<p style="color:var(--color-text-muted);font-size:0.9rem;line-height:1.7;margin-bottom:1rem;">In contrast to our Challenge page offerings, Turnstile allows you to run challenges anywhere on your site in a less-intrusive way without requiring the use of Cloudflare\'s CDN.</p>',
               '<h4 style="font-size:1rem;margin:1.25rem 0 0.5rem;">Deprecated browser support</h4>',
               '<p style="color:var(--color-text-muted);font-size:0.9rem;line-height:1.7;">Challenges are not supported by Microsoft Internet Explorer. If you are currently using Internet Explorer, try using another modern web browser (Chrome, Safari, Firefox). If you are already using a modern web browser, make sure it is using the latest version.</p>',
               '<h4 style="font-size:1rem;margin:1.25rem 0 0.5rem;">Referer header</h4>',
-              '<p style="color:var(--color-text-muted);font-size:0.9rem;line-height:1.7;">Your visitor\'s HTTP request contains a referer header set to the website that they came from. When they encounter and solve a Challenge Page, the request with the referer is sent to the origin, and the response to the request is served to the user. The JavaScript on the response page may read the value of <code style="background:var(--color-card-bg);padding:0.15rem 0.4rem;border-radius:4px;">document.referer</code>, but it will not be accurate.</p>',
-              '<p style="color:var(--color-text-muted);font-size:0.9rem;line-height:1.7;">For example, a visitor coming from a given website is challenged by a WAF rule via an interstitial Challenge Page served by your domain. Once the visitor loads the website\'s home page, the <code style="background:var(--color-card-bg);padding:0.15rem 0.4rem;border-radius:4px;">document.referer</code> value is your domain, not the origin website.</p>',
-              '<p style="color:var(--color-text-muted);font-size:0.9rem;line-height:1.7;">This affects tools like Google Analytics, which reads the referer from JavaScript, since it replaces the previous website that visitors came from.</p>',
-              '<p style="color:var(--color-text-muted);font-size:0.9rem;line-height:1.7;">You can add tracking scripts, such as the Google Tag Manager Javascript, within an existing Challenge Page to capture the correct referer header on the initial request.</p>',
+              '<p style="color:var(--color-text-muted);font-size:0.9rem;line-height:1.7;margin-bottom:1rem;">Your visitor\'s HTTP request contains a referer header set to the website that they came from. When they encounter and solve a Challenge Page, the request with the referer is sent to the origin, and the response to the request is served to the user. The JavaScript on the response page may read the value of <code style="background:var(--color-card-bg);padding:0.15rem 0.4rem;border-radius:4px;">document.referer</code>, but it will not be accurate.</p>',
+              '<p style="color:var(--color-text-muted);font-size:0.9rem;line-height:1.7;margin-bottom:1rem;">For example, a visitor coming from a given website is challenged by a WAF rule via an interstitial Challenge Page served by your domain. Once the visitor loads the website\'s home page, the <code style="background:var(--color-card-bg);padding:0.15rem 0.4rem;border-radius:4px;">document.referer</code> value is your domain, not the origin website.</p>',
+              '<p style="color:var(--color-text-muted);font-size:0.9rem;line-height:1.7;margin-bottom:1rem;">This affects tools like Google Analytics, which reads the referer from JavaScript, since it replaces the previous website that visitors came from.</p>',
+              '<p style="color:var(--color-text-muted);font-size:0.9rem;line-height:1.7;margin-bottom:1rem;">You can add tracking scripts, such as the Google Tag Manager Javascript, within an existing Challenge Page to capture the correct referer header on the initial request.</p>',
               '<p style="color:var(--color-text);font-size:0.9rem;line-height:1.7;margin-top:1rem;"><strong>Example JavaScript</strong></p>',
               '<pre style="background:var(--color-card-bg);padding:1rem;border-radius:8px;overflow-x:auto;font-size:0.85rem;line-height:1.6;color:var(--color-text-muted);margin:0.75rem 0;"><code>&lt;script&gt;<br/>    (function () {<br/>      const gaIds = {<br/>        "&lt;YOUR_DOMAIN&gt;": "&lt;GA_TRACKING_ID&gt;",<br/>      };<br/><br/>      const gaId = gaIds[window.location.hostname];<br/><br/>      if (gaId) {<br/>        const src = "https://www.googletagmanager.com/gtag/js?id=";<br/><br/>        const gaScript = document.createElement("script");<br/>        gaScript.src = src.concat(gaId);<br/>        document.body.appendChild(gaScript);<br/><br/>        window.dataLayer = window.dataLayer || [];<br/>        function gtag() {<br/>          dataLayer.push(arguments);<br/>        }<br/>        gtag("js", new Date());<br/>        gtag("config", gaId);<br/>      } else {<br/>        console.warn(<br/>          "Google Analytics ID not found for host:",<br/>          window.location.hostname,<br/>        );<br/>      }<br/>    })();<br/>  &lt;/script&gt;<br/>&lt;/body&gt;</code></pre>',
               '<h4 style="font-size:1rem;margin:1.25rem 0 0.5rem;">Cross-origin resource sharing (CORS) preflight requests</h4>',
