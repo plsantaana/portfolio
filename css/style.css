@@ -566,10 +566,6 @@ body.dark-mode .theme-toggle:hover {
   background: #444444;
 }
 
-.theme-toggle.sun {
-  font-size: 1.8rem;
-}
-
 @media (max-width: 768px) {
   .split-layout {
     grid-template-columns: 1fr;
