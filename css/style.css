@@ -832,3 +832,16 @@ body.dark-mode .project-modal-body .project-detail * {
   font-size: 0.8rem;
 }
 
+/* Syntax highlighting for Markdown code blocks */
+.hl-cmt { color: #6a9955; }
+.hl-kw  { color: #569cd6; }
+.hl-str { color: #ce9178; }
+.hl-fn  { color: #dcdcaa; }
+.hl-prop { color: #9cdcfe; }
+.hl-op  { color: #d4d4d4; }
+.hl-link { color: #6cb6ff; }
+.hl-bullet { color: #b392f0; }
+.hl-bold { color: #e0e0e0; font-weight: 600; }
+.hl-head { color: #e06c75; }
+.hl-code { color: #b392f0; }
+

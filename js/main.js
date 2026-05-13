@@ -49,7 +49,7 @@
   function applyTheme(dark) {
     document.body.classList.toggle('dark-mode', dark);
     if (toggle) {
-      toggle.innerHTML = dark ? '&#x2600;' : '&#x263E;';
+      toggle.innerHTML = dark ? '&#x2600;' : '&#x23FE;';
       toggle.setAttribute('aria-label', dark ? 'Switch to light mode' : 'Switch to dark mode');
     }
   }
