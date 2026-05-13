@@ -375,6 +375,8 @@ img {
 
 .resume-header h1 {
   margin-bottom: 0.25rem;
+  white-space: nowrap;
+  font-size: clamp(1.5rem, 4vw, 3rem);
 }
 
 .resume-header .title {
@@ -663,6 +665,11 @@ body.dark-mode .project-modal-body .project-detail * {
 
 .project-modal-body .project-tags li {
   font-size: 0.8rem;
+}
+
+.modal-mtab-content[data-mtab="markdown"] pre {
+  white-space: pre-wrap;
+  word-break: break-word;
 }
 
 /* Syntax highlighting for Markdown code blocks */

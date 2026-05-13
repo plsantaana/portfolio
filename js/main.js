@@ -54,7 +54,7 @@
   function applyTheme(dark) {
     document.body.classList.toggle('dark-mode', dark);
     if (toggle) {
-      toggle.innerHTML = dark ? '&#x1F31E;' : '&#x1F319;';
+      toggle.innerHTML = dark ? '&#x2600;&#xFE0F;' : '&#x1F319;';
       toggle.setAttribute('aria-label', dark ? 'Switch to light mode' : 'Switch to dark mode');
     }
   }
