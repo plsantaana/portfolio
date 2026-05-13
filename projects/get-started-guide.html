@@ -88,8 +88,6 @@
     .doc-sample-body h2 {
       font-size: 1.25rem;
       margin: 2rem 0 1rem;
-      padding-bottom: 0.5rem;
-      border-bottom: 1px solid var(--color-border);
     }
     .doc-sample-body h3 {
       font-size: 1.05rem;
@@ -174,7 +172,7 @@
       flex-wrap: wrap;
       margin: 1rem 0;
     }
-    .link-btn {
+    a.link-btn {
       display: inline-block;
       padding: 0.5rem 1.25rem;
       background: var(--color-card-bg);
@@ -185,8 +183,11 @@
       text-decoration: none;
       transition: border-color 0.2s;
     }
-    .link-btn:hover {
+    a.link-btn:hover {
       border-color: var(--color-accent);
+    }
+    .link-buttons a.link-btn:hover {
+      border-color: var(--color-border);
     }
     .link-btn code {
       background: transparent;
@@ -231,7 +232,7 @@
     <div class="bubble slide-in">
       <h2>Get Started Guide</h2>
       <p style="color: var(--color-text-muted); margin-bottom: 1.5rem;">
-        Set up Turnstile to verify visitors without a traditional CAPTCHA, from widget creation to server-side validation.
+        Set up Turnstile to verify visitors without a traditional CAPTCHA.
       </p>
 
       <div class="project-context">
@@ -314,9 +315,9 @@
             <p>First, you must create a Turnstile widget to get your sitekey and secret key.</p>
             <p>Select your preferred implementation method:</p>
             <div class="link-buttons">
-               <a href="#" class="link-btn">Cloudflare dashboard</a>
-               <a href="#" class="link-btn">API</a>
-               <a href="#" class="link-btn">Terraform</a>
+               <a class="link-btn">Cloudflare dashboard</a>
+               <a class="link-btn">API</a>
+               <a class="link-btn">Terraform</a>
             </div>
 
             <h3>2. Embed the widget</h3>
@@ -339,11 +340,9 @@
 
             <h3>Mobile configuration</h3>
             <p>Special considerations are necessary for mobile applications and WebView implementations.</p>
-            <p>Refer to Mobile implementation for more information on mobile application integration.</p>
 
             <h3>Migration from other CAPTCHAs</h3>
             <p>If you are currently using reCAPTCHA, hCaptcha, or another CAPTCHA service, Turnstile can be a drop-in replacement. You can copy and paste our script wherever you have deployed the existing script today.</p>
-            <p>Refer to Migration for step-by-step migration guidance from other CAPTCHA services.</p>
 
             <hr style="border: none; border-top: 1px solid var(--color-border); margin: 2rem 0;">
 

@@ -88,8 +88,6 @@
     .doc-sample-body h2 {
       font-size: 1.25rem;
       margin: 2rem 0 1rem;
-      padding-bottom: 0.5rem;
-      border-bottom: 1px solid var(--color-border);
     }
     .doc-sample-body h3 {
       font-size: 1.05rem;
@@ -104,6 +102,9 @@
       color: var(--color-text-muted);
       font-size: 0.9rem;
       line-height: 1.7;
+    }
+    .doc-sample-body p {
+      margin-bottom: 0.75rem;
     }
     .doc-sample-body ul, .doc-sample-body ol {
       padding-left: 0;
@@ -257,22 +258,18 @@
 
             <div class="doc-note">
               <strong>More information</strong><br>
-              For more background, refer to <a href="https://www.cloudflare.com/learning/bots/what-is-a-bot/" target="_blank">What is a bot?</a>
+              For more background, refer to <a href="https://www.cloudflare.com/learning/bots/what-is-a-bot/" target="_blank">What is a bot? &#x2197;</a>
             </div>
 
             <h2>Verified bots and signed agents</h2>
-            <p>Cloudflare maintains an internal directory of <strong>verified bots</strong> and <strong>signed agents</strong> that are associated with search engine optimization (SEO), website monitoring, and more.</p>
-
-            <br>
+            <p>Cloudflare maintains an internal directory of <a href="https://developers.cloudflare.com/bots/concepts/bot/verified-bots/" target="_blank">verified bot</a> and <a href="https://developers.cloudflare.com/bots/concepts/bot/signed-agents/" target="_blank">signed agents</a> that are associated with search engine optimization (SEO), website monitoring, and more.</p>
 
             <p>You can use this directory to prevent any bot protection measures from impacting otherwise helpful bots and agents, such as search crawlers.</p>
 
-            <br>
 
             <h2>AI bots</h2>
             <p>To prevent AI-related usage of your site content (such as training language models or generating search answers), you can turn on a managed rule that blocks known AI crawlers that use data for training models ("AI Bots"). A managed rule is a rule that Cloudflare maintains and updates — you turn it on, but you do not write or edit the rule yourself.</p>
 
-            <br>
 
             <h3>Which bots are blocked</h3>
             <p>When you enable this feature, Cloudflare will block the following bots:</p>
@@ -292,15 +289,12 @@
               <li><code>CCBot</code> (Common Crawl)</li>
             </ul>
 
-            <br>
 
             <p>In addition to this list, <a href="https://radar.cloudflare.com/bots#verified-bots" target="_blank">verified bots</a> that are classified as AI crawlers, as well as a number of unverified bots that behave similarly, are included in the rule. This rule does not include verified bots that fall into the <code>Search Engine</code> categories.</p>
 
-            <br>
 
             <p>These categories, and the bots classified in these categories, may change from time to time.</p>
 
-            <br>
 
 
 
@@ -311,30 +305,24 @@
               <li><strong>Evasive AI crawlers</strong> that do not follow these conventions but are detected through additional signatures.</li>
             </ul>
 
-            <br>
 
             <h3>Rule evaluation order</h3>
             <p>Cloudflare evaluates bot-related rules in a specific order. When a request matches a rule and receives a terminating action (such as block or challenge), it does not continue to later rules in the sequence.</p>
-            <br>
             <ol>
               <li><strong>Custom rules</strong> (WAF custom rules you create) — evaluated first.</li>
               <li><strong>Block AI bots</strong> (the managed AI rule) — evaluated second.</li>
               <li><strong>Other Super Bot Fight Mode rules</strong> (definitely automated, likely automated, verified bots) — evaluated last.</li>
             </ol>
 
-            <br>
 
             <p>The Block AI bots rule takes precedence over all other Super Bot Fight Mode rules. For example, if you have enabled <strong>Block AI bots</strong> and <strong>Allow verified bots</strong>, verified AI bots will still be blocked.</p>
 
-            <br>
 
             <p>For Bot Management customers, custom rules run before the Block AI bots rule. If your custom rule challenges definitely automated traffic, AI bots will receive that challenge instead of reaching the Block AI bots rule. Because the challenge is a terminating action, Cloudflare does not evaluate the request against later rules in the sequence.</p>
 
-            <br>
 
             <p>The SBFM settings for verified, definitely automated, and likely bots also affect evaluation. If these settings are set to <code>allow</code>, the request is not matched to any SBFM rule and proceeds to the next phase — where the Block AI bots rule can still block it. If the setting is <code>block</code>, the request is blocked in the earlier phase and does not reach the AI rule at all. If the setting is <code>challenge</code>, the request matches a rule and receives a terminating action, so it will not continue to later rules.</p>
 
-            <br>
 
             <p>For self-serve non-Bot Management customers, all rules for verified, definitely automated, and likely bots run in the phase following the AI bots rule.</p>
 
