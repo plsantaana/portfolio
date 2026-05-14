@@ -174,30 +174,7 @@
       color: var(--color-text-muted);
     }
 
-    .link-buttons {
-      display: flex;
-      gap: 0.75rem;
-      flex-wrap: wrap;
-      margin: 1rem 0;
-    }
-    .link-btn {
-      display: inline-block;
-      padding: 0.5rem 1.25rem;
-      background: var(--color-card-bg);
-      border: 1px solid var(--color-border);
-      border-radius: 8px;
-      font-size: 0.85rem;
-      color: var(--color-text);
-      text-decoration: none;
-      transition: border-color 0.2s;
-    }
-    .link-btn:hover {
-      border-color: var(--color-accent);
-    }
-    .link-btn code {
-      background: transparent;
-      padding: 0;
-    }
+
 
     .markdown-wrap {
       border: 1px solid var(--color-border);
@@ -218,24 +195,13 @@
       tab-size: 2;
     }
     body.dark-mode .markdown-wrap pre { background: #0d0d0d; }
-    .hl-cmt { color: #6a9955; }
-    .hl-kw  { color: #569cd6; }
-    .hl-str { color: #ce9178; }
-    .hl-fn  { color: #dcdcaa; }
-    .hl-prop { color: #9cdcfe; }
-    .hl-op  { color: #d4d4d4; }
-    .hl-link { color: #6cb6ff; }
-    .hl-bullet { color: #b392f0; }
-    .hl-bold { color: #e0e0e0; font-weight: 600; }
-    .hl-head { color: #e06c75; }
-    .hl-code { color: #b392f0; }
   </style>
 </head>
 <body>
   <div class="container" style="padding-top: 3rem; max-width: 950px;">
     <a href="../index.html" class="btn btn-primary" style="display: inline-block; margin-bottom: 2rem;">&larr; Back</a>
     
-    <div class="bubble slide-in">
+    <div class="bubble">
       <h2>Troubleshooting</h2>
       <p style="color: var(--color-text-muted); margin-bottom: 1.5rem;">
         Resolve common issues with Cloudflare challenges, including loops and proxied hostnames.
