@@ -659,6 +659,17 @@ body.dark-mode .project-modal-body .project-detail * {
   color: #ffffff !important;
 }
 
+body.dark-mode #resume-modal .resume-header h1,
+body.dark-mode #resume-modal .title,
+body.dark-mode #resume-modal .resume-section h2,
+body.dark-mode #resume-modal .resume-item h3,
+body.dark-mode #resume-modal .resume-item .subtitle,
+body.dark-mode #resume-modal .resume-item .date,
+body.dark-mode #resume-modal .resume-item p,
+body.dark-mode #resume-modal .resume-item ul li {
+  color: #ffffff !important;
+}
+
 .project-modal-body .project-tags {
   margin-bottom: 1.5rem;
 }
