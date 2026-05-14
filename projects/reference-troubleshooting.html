@@ -242,7 +242,9 @@
       </p>
 
       <div class="project-context">
-        <p><strong>Context:</strong> Documentation sample from Cloudflare's Challenges product. The page is written in Visual Studio Code and uses MDX, a Markdown-based authoring format, with custom components.</p>
+        <p><strong>The Problem:</strong> Many support concerns came not from direct customers, but from their end users who were experiencing challenge loops or being incorrectly flagged as bots. Existing troubleshooting resources were too technical, making it difficult for non-technical users to understand the issue or resolve it on their own.</p>
+        <p style="margin-top: 0.75rem;"><strong>The Solution:</strong> I created a user-friendly troubleshooting guide focused on accessibility and clarity for everyday users. The content explained common causes of challenge loops and false bot detections in simple language, while providing actionable troubleshooting steps and escalation paths if issues persisted. The documentation was designed to reduce confusion, improve self-service support, and create a smoother user experience.</p>
+        <p style="margin-top: 0.75rem;"><strong>Results:</strong> Improved accessibility of troubleshooting resources for non-technical users; reduced repetitive support inquiries related to challenge loops and false positives; increased positive feedback around clarity and ease of troubleshooting steps.</p>
       </div>
 
       <div class="tabs">
@@ -257,112 +259,73 @@
             <span class="dot"></span>
             <span class="dot"></span>
             <span class="dot"></span>
-            <span class="url-bar">developers.cloudflare.com / cloudflare-challenges / troubleshooting</span>
+            <span class="url-bar">developers.cloudflare.com / cloudflare-challenges / troubleshooting / challenge-solve-issues</span>
           </div>
           <div class="doc-sample-body">
-            <h1>Troubleshooting</h1>
-            <p class="doc-desc">Resolve common issues with Cloudflare challenges, including loops and proxied hostnames.</p>
+            <h1>Challenge solve issues</h1>
+            <p class="doc-desc">Fix challenge loops, unsupported browser errors, and other solve failures.</p>
 
-            <h2>Common issues</h2>
-
-            <h3>Proxied hostnames</h3>
-            <p>If your hostname is proxied through Cloudflare, visitors may experience challenges on your webpages.</p>
-            <br>
-            <p>Cloudflare issues challenges through the Challenge Platform, which is the same underlying technology powering Turnstile.</p>
-            <br>
-            <p>In contrast to our Challenge page offerings, Turnstile allows you to run challenges anywhere on your site in a less-intrusive way without requiring the use of Cloudflare's CDN.</p>
-
-            <h3>Deprecated browser support</h3>
-            <p>Challenges are not supported by Microsoft Internet Explorer. If you are currently using Internet Explorer, try using another modern web browser (Chrome, Safari, Firefox). If you are already using a modern web browser, make sure it is using the latest version.</p>
-
-            <h3>Referer header</h3>
-            <p>Your visitor's HTTP request contains a referer header set to the website that they came from. When they encounter and solve a Challenge Page, the request with the referer is sent to the origin, and the response to the request is served to the user. The JavaScript on the response page may read the value of <code>document.referer</code>, but it will not be accurate.</p>
-            <br>
-            <p>For example, a visitor coming from a given website is challenged by a WAF rule via an interstitial Challenge Page served by your domain. Once the visitor loads the website's home page, the <code>document.referer</code> value is your domain, not the origin website.</p>
-            <br>
-            <p>This affects tools like Google Analytics, which reads the referer from JavaScript, since it replaces the previous website that visitors came from.</p>
-            <br>
-            <p>You can add tracking scripts, such as the Google Tag Manager Javascript, within an existing Challenge Page to capture the correct referer header on the initial request.</p>
-
-            <p><strong>Example JavaScript</strong></p>
-            <pre style="background: var(--color-card-bg); padding: 1rem; border-radius: 8px; overflow-x: auto;"><code>&lt;script&gt;
-    (function () {
-      const gaIds = {
-        "&lt;YOUR_DOMAIN&gt;": "&lt;GA_TRACKING_ID&gt;",
-      };
-
-      const gaId = gaIds[window.location.hostname];
-
-      if (gaId) {
-        const src = "https://www.googletagmanager.com/gtag/js?id=";
-
-        const gaScript = document.createElement("script");
-        gaScript.src = src.concat(gaId);
-        document.body.appendChild(gaScript);
-
-        window.dataLayer = window.dataLayer || [];
-        function gtag() {
-          dataLayer.push(arguments);
-        }
-        gtag("js", new Date());
-        gtag("config", gaId);
-      } else {
-        console.warn(
-          "Google Analytics ID not found for host:",
-          window.location.hostname,
-        );
-      }
-    })();
-  &lt;/script&gt;
-&lt;/body&gt;</code></pre>
-
-            <h3>Cross-origin resource sharing (CORS) preflight requests</h3>
-            <p>Cross-origin resource sharing (CORS) preflight requests, or <code>OPTIONS</code>, exclude user credentials that include cookies. As a result, the <code>cf_clearance</code> cookie will not be sent with the request, causing it to fail to bypass a Challenge Page (Non-interactive, Managed, or Interactive Challenge).</p>
-
-            <h3>Challenges on Cloudflare-protected sites</h3>
-            <p>Cloudflare issues challenges to website visitors to protect against malicious activity, such as bot attacks and DDoS attempts. If a legitimate human visitor is unexpectedly challenged, the reason typically stems from a security feature flagging their request.</p>
-
-            <table>
-              <thead>
-                <tr>
-                  <th>Source</th>
-                  <th>Description</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td><strong>High threat score</strong></td>
-                  <td>IP addresses with a high-risk score trigger Challenges.</td>
-                </tr>
-                <tr>
-                  <td><strong>IP reputation</strong></td>
-                  <td>If your IP has a history of suspicious activity, it may be flagged.</td>
-                </tr>
-                <tr>
-                  <td><strong>Bot detection</strong></td>
-                  <td>Automated traffic resembling bots is filtered by Cloudflare.</td>
-                </tr>
-                <tr>
-                  <td><strong>Web Application Firewall (WAF) custom rules</strong></td>
-                  <td>Site owners may set rules targeting specific regions or user agents.</td>
-                </tr>
-                <tr>
-                  <td><strong>Browser Integrity Check</strong></td>
-                  <td>Cloudflare verifies that browsers meet certain standards.</td>
-                </tr>
-                <tr>
-                  <td><strong>Challenge Passage</strong></td>
-                  <td>Technologies like Privacy Pass reduce the frequency of repeated Challenges.</td>
-                </tr>
-              </tbody>
-            </table>
-
-            <p>To avoid repeated challenges, visitors can take the following steps to ensure their environment does not trigger security checks:</p>
+            <h2>Challenge loops</h2>
+            <p>You may encounter a challenge loop where the challenge keeps reappearing without being solved. This is in very specific cases where we detect strong bot signals. If you are a legitimate human, you can follow the troubleshooting guide below to resolve the issue or submit a feedback report. Challenge loops can happen for several reasons:</p>
             <ul>
-              <li>Ensure your web browser is updated to the latest stable version for full compatibility with modern challenge technologies.</li>
-              <li>Temporarily disable browser extensions, such as ad blockers or privacy tools, that may block standard browser headers or the necessary challenge scripts.</li>
-              <li>If your IP address has a poor reputation (often seen with shared VPNs or corporate proxies), try switching to a different, trusted network connection.</li>
+              <li><strong>Network issues</strong>: Poor or unstable network connections can prevent the challenge from being completed.</li>
+              <li><strong>Browser configuration</strong>: Some browser settings or extensions may block the scripts needed to execute the challenge.</li>
+              <li><strong>Unsupported browsers</strong>: Using a browser that is not supported by Turnstile.</li>
+              <li><strong>JavaScript disabled</strong>: Turnstile relies on JavaScript to function properly.</li>
+              <li><strong>Detection errors</strong>: If Turnstile suspects bot-like behavior, you may encounter repeated challenges for verification.</li>
             </ul>
+            <p>Most challenges are quick to complete and typically take only a few seconds. If it takes longer, ensure your network is stable and follow the troubleshooting steps.</p>
+
+            <div class="doc-note">
+              <strong>Note</strong><br>
+              If the issue persists, try switching to a different network or device to rule out any issues with your browser environment.<br><br>
+              Ensure your browser is updated to the latest version to maintain compatibility.
+            </div>
+
+            <h2>Troubleshooting</h2>
+            <p>Follow the steps below to ensure that your environment is properly configured.</p>
+
+            <ol>
+              <li><strong>Verify your browser compatibility.</strong>
+                <ul>
+                  <li>Turnstile supports all major browsers, except Internet Explorer.</li>
+                  <li>Ensure your browser is up to date.</li>
+                </ul>
+              </li>
+              <li><strong>Disable your browser extensions.</strong>
+                <ul>
+                  <li>Some browser extensions, such as ad blockers, may block the scripts Turnstile needs to operate.</li>
+                  <li>Temporarily disable all extensions and reload the page.</li>
+                </ul>
+              </li>
+              <li><strong>Enable JavaScript.</strong>
+                <ul>
+                  <li>Turnstile requires JavaScript to run. Ensure it is enabled in your browser settings. Refer to your browser's documentation for instructions on enabling JavaScript.</li>
+                </ul>
+              </li>
+              <li><strong>Try Incognito or Private mode.</strong>
+                <ul>
+                  <li>Use your browser's incognito or private mode to rule out issues caused by extensions or cached data.</li>
+                </ul>
+              </li>
+              <li><strong>Test another browser or device.</strong>
+                <ul>
+                  <li>Switch to a different browser or device to see if the issue is specific to your current setup.</li>
+                </ul>
+              </li>
+              <li><strong>Avoid VPNs or proxies.</strong>
+                <ul>
+                  <li>Some virtual private networks (VPN) or proxies may interfere with Turnstile. Disable them temporarily to test.</li>
+                </ul>
+              </li>
+              <li><strong>Switch to a different network.</strong>
+                <ul>
+                  <li>Your current network may have restrictions causing Turnstile challenges to fail. Try switching to another network, such as a mobile hotspot.</li>
+                </ul>
+              </li>
+            </ol>
+
+            <p>If none of the above resolves your issue, contact the website administrator with the error code and Ray ID or submit a feedback report through the Turnstile widget by selecting <strong>Submit Feedback</strong>.</p>
 
           </div>
         </div>
@@ -372,94 +335,55 @@
       <div class="tab-content" id="tab-markdown">
         <div class="markdown-wrap">
 <pre>---
+<span class="hl-prop">title</span>: <span class="hl-str">Challenge solve issues</span>
 <span class="hl-prop">content_type</span>: <span class="hl-str">troubleshooting</span>
-<span class="hl-prop">title</span>: <span class="hl-str">Troubleshooting</span>
-<span class="hl-prop">description</span>: <span class="hl-str">Resolve common issues with Cloudflare challenges, including loops and proxied hostnames.</span>
+<span class="hl-prop">description</span>: <span class="hl-str">Fix challenge loops, unsupported browser errors, and other solve failures.</span>
 <span class="hl-prop">products</span>:
   <span class="hl-bullet">-</span> <span class="hl-str">cloudflare-challenges</span>
+<span class="hl-prop">sidebar</span>:
+  <span class="hl-prop">order</span>: 2
 ---
 
-<span class="hl-head">##</span> Common issues
+<span class="hl-head">##</span> Challenge loops
 
-<span class="hl-head">###</span> Proxied hostnames
+You may encounter a challenge loop where the challenge keeps reappearing without being solved. This is in very specific cases where we detect strong bot signals. If you are a legitimate human, you can follow the troubleshooting guide below to resolve the issue or submit a feedback report. Challenge loops can happen for several reasons:
 
-If your hostname is proxied through Cloudflare, visitors may experience challenges on your webpages.
+<span class="hl-bullet">-</span> <span class="hl-bold">**Network issues**</span>: Poor or unstable network connections can prevent the challenge from being completed.
+<span class="hl-bullet">-</span> <span class="hl-bold">**Browser configuration**</span>: Some browser settings or extensions may block the scripts needed to execute the challenge.
+<span class="hl-bullet">-</span> <span class="hl-bold">**Unsupported browsers**</span>: Using a browser that is not supported by Turnstile.
+<span class="hl-bullet">-</span> <span class="hl-bold">**JavaScript disabled**</span>: Turnstile relies on JavaScript to function properly.
+<span class="hl-bullet">-</span> <span class="hl-bold">**Detection errors**</span>: If Turnstile suspects bot-like behavior, you may encounter repeated challenges for verification.
 
-Cloudflare issues challenges through the [Challenge Platform](/cloudflare-challenges/), which is the same underlying technology powering [Turnstile](/turnstile/).
+Most challenges are quick to complete and typically take only a few seconds. If it takes longer, ensure your network is stable and follow the [troubleshooting steps](#troubleshooting).
 
-In contrast to our Challenge page offerings, Turnstile allows you to run challenges anywhere on your site in a less-intrusive way without requiring the use of Cloudflare's CDN.
+:::note
+If the issue persists, try switching to a different network or device to rule out any issues with your browser environment.
 
-<span class="hl-head">###</span> Deprecated browser support
+Ensure your browser is updated to the latest version to maintain compatibility.
+:::
 
-Challenges are not supported by Microsoft Internet Explorer. If you are currently using Internet Explorer, try using another modern web browser (Chrome, Safari, Firefox). If you are already using a modern web browser, make sure it is using the latest version.
+<span class="hl-head">##</span> Troubleshooting
 
-<span class="hl-head">###</span> Referer header
+Follow the steps below to ensure that your environment is properly configured.
 
-Your visitor's HTTP request contains a referer header set to the website that they came from. When they encounter and solve a Challenge Page, the request with the referer is sent to the origin, and the response to the request is served to the user. The JavaScript on the response page may read the value of <span class="hl-code">document.referer</span>, but it will not be accurate.
+1. <span class="hl-bold">**Verify your browser compatibility.**</span>
+    <span class="hl-bullet">-</span> Turnstile supports all major browsers, except Internet Explorer.
+    <span class="hl-bullet">-</span> Ensure your browser is up to date. 
+2. <span class="hl-bold">**Disable your browser extensions.**</span>
+    <span class="hl-bullet">-</span> Some browser extensions, such as ad blockers, may block the scripts Turnstile needs to operate.
+    <span class="hl-bullet">-</span> Temporarily disable all extensions and reload the page.
+3. <span class="hl-bold">**Enable JavaScript.**</span>
+    <span class="hl-bullet">-</span> Turnstile requires JavaScript to run. Ensure it is enabled in your browser settings. Refer to your browser's documentation for instructions on enabling JavaScript.
+4. <span class="hl-bold">**Try Incognito or Private mode.**</span>
+    <span class="hl-bullet">-</span> Use your browser's incognito or private mode to rule out issues caused by extensions or cached data.
+5. <span class="hl-bold">**Test another browser or device.**</span>
+    <span class="hl-bullet">-</span> Switch to a different browser or device to see if the issue is specific to your current setup.
+6. <span class="hl-bold">**Avoid VPNs or proxies.**</span>
+    <span class="hl-bullet">-</span> Some virtual private networks (VPN) or proxies may interfere with Turnstile. Disable them temporarily to test.
+7. <span class="hl-bold">**Switch to a different network.**</span>
+    <span class="hl-bullet">-</span> Your current network may have restrictions causing Turnstile challenges to fail. Try switching to another network, such as a mobile hotspot.
 
-For example, a visitor coming from a given website is challenged by a [WAF rule](/waf/custom-rules/) via an interstitial Challenge Page served by your domain. Once the visitor loads the website's home page, the <span class="hl-code">document.referer</span> value is your domain, not the origin website.
-
-This affects tools like Google Analytics, which reads the referer from JavaScript, since it replaces the previous website that visitors came from.
-
-You can add tracking scripts, such as the Google Tag Manager Javascript, within an existing [Challenge Page](/rules/custom-errors/) to capture the correct referer header on the initial request.
-
-<span class="hl-bold">Example JavaScript</span>
-
-<span class="hl-str">```html</span>
-&lt;script&gt;
-    (function () {
-      const gaIds = {
-        "&lt;YOUR_DOMAIN&gt;": "&lt;GA_TRACKING_ID&gt;",
-      };
-
-      const gaId = gaIds[window.location.hostname];
-
-      if (gaId) {
-        const src = "https://www.googletagmanager.com/gtag/js?id=";
-
-        const gaScript = document.createElement("script");
-        gaScript.src = src.concat(gaId);
-        document.body.appendChild(gaScript);
-
-        window.dataLayer = window.dataLayer || [];
-        function gtag() {
-          dataLayer.push(arguments);
-        }
-        gtag("js", new Date());
-        gtag("config", gaId);
-      } else {
-        console.warn(
-          "Google Analytics ID not found for host:",
-          window.location.hostname,
-        );
-      }
-    })();
-  &lt;/script&gt;
-&lt;/body&gt;
-<span class="hl-str">```</span>
-
-<span class="hl-head">###</span> Cross-origin resource sharing (CORS) preflight requests
-
-Cross-origin resource sharing (CORS) preflight requests, or <span class="hl-code">OPTIONS</span>, exclude user credentials that include cookies. As a result, the <span class="hl-code">cf_clearance</span> cookie will not be sent with the request, causing it to fail to bypass a Challenge Page (Non-interactive, Managed, or Interactive Challenge).
-
-<span class="hl-head">###</span> Challenges on Cloudflare-protected sites
-
-Cloudflare issues challenges to website visitors to protect against malicious activity, such as bot attacks and DDoS attempts. If a legitimate human visitor is unexpectedly challenged, the reason typically stems from a security feature flagging their request.
-
-| Source | Description |
-| --- | --- |
-| High threat score | IP addresses with a high-risk score trigger Challenges. |
-| IP reputation | If your IP has a history of suspicious activity, it may be flagged. |
-| Bot detection | Automated traffic resembling bots is filtered by Cloudflare. |
-| Web Application Firewall (WAF) custom rules | Site owners may set rules targeting specific regions or user agents. |
-| Browser Integrity Check | Cloudflare verifies that browsers meet certain standards. |
-| Challenge Passage | Technologies like Privacy Pass reduce the frequency of repeated Challenges. |
-
-To avoid repeated challenges, visitors can take the following steps to ensure their environment does not trigger security checks:
-
-<span class="hl-bullet">-</span> Ensure your web browser is updated to the latest stable version for full compatibility with modern challenge technologies.
-<span class="hl-bullet">-</span> Temporarily disable browser extensions, such as ad blockers or privacy tools, that may block standard browser headers or the necessary challenge scripts.
-<span class="hl-bullet">-</span> If your IP address has a poor reputation (often seen with shared VPNs or corporate proxies), try switching to a different, trusted network connection.</pre>
+If none of the above resolves your issue, contact the website administrator with the [error code](/turnstile/troubleshooting/client-side-errors/error-codes/) and Ray ID or submit a [feedback report](/turnstile/troubleshooting/feedback-reports/) through the Turnstile widget by selecting <span class="hl-bold">**Submit Feedback**</span>.</pre>
         </div>
       </div>
 

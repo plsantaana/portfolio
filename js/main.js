@@ -333,7 +333,18 @@
     'reference-troubleshooting': {
       title: 'Reference & Troubleshooting',
       detail: [
-        '<p><strong>Context:</strong> Documentation sample from Cloudflare\'s Challenges product. The page is written in Visual Studio Code and uses MDX, a Markdown-based authoring format, with custom components.</p>',
+        '<div style="margin-bottom:1.5rem;">',
+          '<h3 style="font-size:1.1rem;margin:0 0 0.75rem;">The Problem</h3>',
+          '<p style="color:var(--color-text-muted);font-size:0.9rem;line-height:1.7;">Many support concerns came not from direct customers, but from their end users who were experiencing challenge loops or being incorrectly flagged as bots. Existing troubleshooting resources were too technical, making it difficult for non-technical users to understand the issue or resolve it on their own.</p>',
+          '<h3 style="font-size:1.1rem;margin:1.5rem 0 0.75rem;">The Solution</h3>',
+          '<p style="color:var(--color-text-muted);font-size:0.9rem;line-height:1.7;">I created a user-friendly troubleshooting guide focused on accessibility and clarity for everyday users. The content explained common causes of challenge loops and false bot detections in simple language, while providing actionable troubleshooting steps and escalation paths if issues persisted. The documentation was designed to reduce confusion, improve self-service support, and create a smoother user experience.</p>',
+          '<h3 style="font-size:1.1rem;margin:1.5rem 0 0.75rem;">Results</h3>',
+          '<ul style="list-style:none;padding-left:0;margin-bottom:0;">',
+            '<li style="position:relative;padding-left:1.4rem;margin-bottom:0.3rem;color:var(--color-text-muted);font-size:0.9rem;line-height:1.7;">&mdash; Improved accessibility of troubleshooting resources for non-technical users</li>',
+            '<li style="position:relative;padding-left:1.4rem;margin-bottom:0.3rem;color:var(--color-text-muted);font-size:0.9rem;line-height:1.7;">&mdash; Reduced repetitive support inquiries related to challenge loops and false positives</li>',
+            '<li style="position:relative;padding-left:1.4rem;margin-bottom:0.3rem;color:var(--color-text-muted);font-size:0.9rem;line-height:1.7;">&mdash; Increased positive feedback around clarity and ease of troubleshooting steps</li>',
+          '</ul>',
+        '</div>',
         '<div style="display:flex;gap:0;border-bottom:1px solid var(--color-border);margin:1.25rem 0 0;">',
           '<button class="modal-tab-btn active" data-mtab="rendered" style="padding:0.6rem 1.25rem;font-size:0.85rem;font-weight:500;background:transparent;border:none;border-bottom:2px solid var(--color-accent);cursor:pointer;color:var(--color-text);">Rendered</button>',
           '<button class="modal-tab-btn" data-mtab="markdown" style="padding:0.6rem 1.25rem;font-size:0.85rem;font-weight:500;background:transparent;border:none;border-bottom:2px solid transparent;cursor:pointer;color:var(--color-text-muted);">Markdown</button>',
@@ -344,138 +355,123 @@
               '<span style="width:10px;height:10px;border-radius:50%;background:#ff5f56;display:inline-block;"></span>',
               '<span style="width:10px;height:10px;border-radius:50%;background:#ffbd2e;display:inline-block;"></span>',
               '<span style="width:10px;height:10px;border-radius:50%;background:#27c93f;display:inline-block;"></span>',
-              '<span style="flex:1;padding:0.35rem 0.75rem;background:var(--color-bg);border-radius:6px;font-size:0.8rem;">developers.cloudflare.com / cloudflare-challenges / troubleshooting</span>',
+              '<span style="flex:1;padding:0.35rem 0.75rem;background:var(--color-bg);border-radius:6px;font-size:0.8rem;">developers.cloudflare.com / cloudflare-challenges / troubleshooting / challenge-solve-issues</span>',
             '</div>',
             '<div style="padding:1.5rem 2rem;">',
-              '<h2 style="font-size:1.5rem;margin-bottom:0.5rem;">Troubleshooting</h2>',
-              '<p style="color:var(--color-text-muted);margin-bottom:1.5rem;font-size:0.95rem;">Resolve common issues with Cloudflare challenges, including loops and proxied hostnames.</p>',
-              '<h3 style="font-size:1.1rem;margin:1.5rem 0 0.75rem;">Common issues</h3>',
-              '<h4 style="font-size:1rem;margin:1.25rem 0 0.5rem;">Proxied hostnames</h4>',
-              '<p style="color:var(--color-text-muted);font-size:0.9rem;line-height:1.7;margin-bottom:1rem;">If your hostname is proxied through Cloudflare, visitors may experience challenges on your webpages.</p>',
-              '<p style="color:var(--color-text-muted);font-size:0.9rem;line-height:1.7;margin-bottom:1rem;">Cloudflare issues challenges through the Challenge Platform, which is the same underlying technology powering Turnstile.</p>',
-              '<p style="color:var(--color-text-muted);font-size:0.9rem;line-height:1.7;margin-bottom:1rem;">In contrast to our Challenge page offerings, Turnstile allows you to run challenges anywhere on your site in a less-intrusive way without requiring the use of Cloudflare\'s CDN.</p>',
-              '<h4 style="font-size:1rem;margin:1.25rem 0 0.5rem;">Deprecated browser support</h4>',
-              '<p style="color:var(--color-text-muted);font-size:0.9rem;line-height:1.7;">Challenges are not supported by Microsoft Internet Explorer. If you are currently using Internet Explorer, try using another modern web browser (Chrome, Safari, Firefox). If you are already using a modern web browser, make sure it is using the latest version.</p>',
-              '<h4 style="font-size:1rem;margin:1.25rem 0 0.5rem;">Referer header</h4>',
-              '<p style="color:var(--color-text-muted);font-size:0.9rem;line-height:1.7;margin-bottom:1rem;">Your visitor\'s HTTP request contains a referer header set to the website that they came from. When they encounter and solve a Challenge Page, the request with the referer is sent to the origin, and the response to the request is served to the user. The JavaScript on the response page may read the value of <code style="background:var(--color-card-bg);padding:0.15rem 0.4rem;border-radius:4px;">document.referer</code>, but it will not be accurate.</p>',
-              '<p style="color:var(--color-text-muted);font-size:0.9rem;line-height:1.7;margin-bottom:1rem;">For example, a visitor coming from a given website is challenged by a WAF rule via an interstitial Challenge Page served by your domain. Once the visitor loads the website\'s home page, the <code style="background:var(--color-card-bg);padding:0.15rem 0.4rem;border-radius:4px;">document.referer</code> value is your domain, not the origin website.</p>',
-              '<p style="color:var(--color-text-muted);font-size:0.9rem;line-height:1.7;margin-bottom:1rem;">This affects tools like Google Analytics, which reads the referer from JavaScript, since it replaces the previous website that visitors came from.</p>',
-              '<p style="color:var(--color-text-muted);font-size:0.9rem;line-height:1.7;margin-bottom:1rem;">You can add tracking scripts, such as the Google Tag Manager Javascript, within an existing Challenge Page to capture the correct referer header on the initial request.</p>',
-              '<p style="color:var(--color-text);font-size:0.9rem;line-height:1.7;margin-top:1rem;"><strong>Example JavaScript</strong></p>',
-              '<pre style="background:var(--color-card-bg);padding:1rem;border-radius:8px;overflow-x:auto;font-size:0.85rem;line-height:1.6;color:var(--color-text-muted);margin:0.75rem 0;"><code>&lt;script&gt;<br/>    (function () {<br/>      const gaIds = {<br/>        "&lt;YOUR_DOMAIN&gt;": "&lt;GA_TRACKING_ID&gt;",<br/>      };<br/><br/>      const gaId = gaIds[window.location.hostname];<br/><br/>      if (gaId) {<br/>        const src = "https://www.googletagmanager.com/gtag/js?id=";<br/><br/>        const gaScript = document.createElement("script");<br/>        gaScript.src = src.concat(gaId);<br/>        document.body.appendChild(gaScript);<br/><br/>        window.dataLayer = window.dataLayer || [];<br/>        function gtag() {<br/>          dataLayer.push(arguments);<br/>        }<br/>        gtag("js", new Date());<br/>        gtag("config", gaId);<br/>      } else {<br/>        console.warn(<br/>          "Google Analytics ID not found for host:",<br/>          window.location.hostname,<br/>        );<br/>      }<br/>    })();<br/>  &lt;/script&gt;<br/>&lt;/body&gt;</code></pre>',
-              '<h4 style="font-size:1rem;margin:1.25rem 0 0.5rem;">Cross-origin resource sharing (CORS) preflight requests</h4>',
-              '<p style="color:var(--color-text-muted);font-size:0.9rem;line-height:1.7;">Cross-origin resource sharing (CORS) preflight requests, or <code style="background:var(--color-card-bg);padding:0.15rem 0.4rem;border-radius:4px;">OPTIONS</code>, exclude user credentials that include cookies. As a result, the <code style="background:var(--color-card-bg);padding:0.15rem 0.4rem;border-radius:4px;">cf_clearance</code> cookie will not be sent with the request, causing it to fail to bypass a Challenge Page (Non-interactive, Managed, or Interactive Challenge).</p>',
-              '<h4 style="font-size:1rem;margin:1.25rem 0 0.5rem;">Challenges on Cloudflare-protected sites</h4>',
-              '<p style="color:var(--color-text-muted);font-size:0.9rem;line-height:1.7;">Cloudflare issues challenges to website visitors to protect against malicious activity, such as bot attacks and DDoS attempts. If a legitimate human visitor is unexpectedly challenged, the reason typically stems from a security feature flagging their request.</p>',
-              '<table style="width:100%;border-collapse:collapse;margin:1rem 0;font-size:0.9rem;">',
-                '<thead><tr><th style="border:1px solid var(--color-border);padding:0.6rem 1rem;text-align:left;background:var(--color-card-bg);font-weight:600;color:var(--color-text);">Source</th><th style="border:1px solid var(--color-border);padding:0.6rem 1rem;text-align:left;background:var(--color-card-bg);font-weight:600;color:var(--color-text);">Description</th></tr></thead>',
-                '<tbody>',
-                  '<tr><td style="border:1px solid var(--color-border);padding:0.6rem 1rem;color:var(--color-text-muted);"><strong>High threat score</strong></td><td style="border:1px solid var(--color-border);padding:0.6rem 1rem;color:var(--color-text-muted);">IP addresses with a high-risk score trigger Challenges.</td></tr>',
-                  '<tr><td style="border:1px solid var(--color-border);padding:0.6rem 1rem;color:var(--color-text-muted);"><strong>IP reputation</strong></td><td style="border:1px solid var(--color-border);padding:0.6rem 1rem;color:var(--color-text-muted);">If your IP has a history of suspicious activity, it may be flagged.</td></tr>',
-                  '<tr><td style="border:1px solid var(--color-border);padding:0.6rem 1rem;color:var(--color-text-muted);"><strong>Bot detection</strong></td><td style="border:1px solid var(--color-border);padding:0.6rem 1rem;color:var(--color-text-muted);">Automated traffic resembling bots is filtered by Cloudflare.</td></tr>',
-                  '<tr><td style="border:1px solid var(--color-border);padding:0.6rem 1rem;color:var(--color-text-muted);"><strong>Web Application Firewall (WAF) custom rules</strong></td><td style="border:1px solid var(--color-border);padding:0.6rem 1rem;color:var(--color-text-muted);">Site owners may set rules targeting specific regions or user agents.</td></tr>',
-                  '<tr><td style="border:1px solid var(--color-border);padding:0.6rem 1rem;color:var(--color-text-muted);"><strong>Browser Integrity Check</strong></td><td style="border:1px solid var(--color-border);padding:0.6rem 1rem;color:var(--color-text-muted);">Cloudflare verifies that browsers meet certain standards.</td></tr>',
-                  '<tr><td style="border:1px solid var(--color-border);padding:0.6rem 1rem;color:var(--color-text-muted);"><strong>Challenge Passage</strong></td><td style="border:1px solid var(--color-border);padding:0.6rem 1rem;color:var(--color-text-muted);">Technologies like Privacy Pass reduce the frequency of repeated Challenges.</td></tr>',
-                '</tbody>',
-              '</table>',
-              '<p style="color:var(--color-text-muted);font-size:0.9rem;line-height:1.7;">To avoid repeated challenges, visitors can take the following steps to ensure their environment does not trigger security checks:</p>',
+              '<h2 style="font-size:1.5rem;margin-bottom:0.5rem;">Challenge solve issues</h2>',
+              '<p style="color:var(--color-text-muted);margin-bottom:1.5rem;font-size:0.95rem;">Fix challenge loops, unsupported browser errors, and other solve failures.</p>',
+              '<h3 style="font-size:1.1rem;margin:1.5rem 0 0.75rem;">Challenge loops</h3>',
+              '<p style="color:var(--color-text-muted);font-size:0.9rem;line-height:1.7;margin-bottom:1rem;">You may encounter a challenge loop where the challenge keeps reappearing without being solved. This is in very specific cases where we detect strong bot signals. If you are a legitimate human, you can follow the troubleshooting guide below to resolve the issue or submit a feedback report. Challenge loops can happen for several reasons:</p>',
               '<ul style="list-style:none;padding-left:0;margin-bottom:1rem;">',
-                '<li style="position:relative;padding-left:1.4rem;margin-bottom:0.3rem;color:var(--color-text-muted);font-size:0.9rem;line-height:1.7;">&mdash; Ensure your web browser is updated to the latest stable version for full compatibility with modern challenge technologies.</li>',
-                '<li style="position:relative;padding-left:1.4rem;margin-bottom:0.3rem;color:var(--color-text-muted);font-size:0.9rem;line-height:1.7;">&mdash; Temporarily disable browser extensions, such as ad blockers or privacy tools, that may block standard browser headers or the necessary challenge scripts.</li>',
-                '<li style="position:relative;padding-left:1.4rem;margin-bottom:0.3rem;color:var(--color-text-muted);font-size:0.9rem;line-height:1.7;">&mdash; If your IP address has a poor reputation (often seen with shared VPNs or corporate proxies), try switching to a different, trusted network connection.</li>',
+                '<li style="position:relative;padding-left:1.4rem;margin-bottom:0.3rem;color:var(--color-text-muted);font-size:0.9rem;line-height:1.7;"><strong style="color:var(--color-text);">Network issues</strong>: Poor or unstable network connections can prevent the challenge from being completed.</li>',
+                '<li style="position:relative;padding-left:1.4rem;margin-bottom:0.3rem;color:var(--color-text-muted);font-size:0.9rem;line-height:1.7;"><strong style="color:var(--color-text);">Browser configuration</strong>: Some browser settings or extensions may block the scripts needed to execute the challenge.</li>',
+                '<li style="position:relative;padding-left:1.4rem;margin-bottom:0.3rem;color:var(--color-text-muted);font-size:0.9rem;line-height:1.7;"><strong style="color:var(--color-text);">Unsupported browsers</strong>: Using a browser that is not supported by Turnstile.</li>',
+                '<li style="position:relative;padding-left:1.4rem;margin-bottom:0.3rem;color:var(--color-text-muted);font-size:0.9rem;line-height:1.7;"><strong style="color:var(--color-text);">JavaScript disabled</strong>: Turnstile relies on JavaScript to function properly.</li>',
+                '<li style="position:relative;padding-left:1.4rem;margin-bottom:0.3rem;color:var(--color-text-muted);font-size:0.9rem;line-height:1.7;"><strong style="color:var(--color-text);">Detection errors</strong>: If Turnstile suspects bot-like behavior, you may encounter repeated challenges for verification.</li>',
               '</ul>',
+              '<p style="color:var(--color-text-muted);font-size:0.9rem;line-height:1.7;margin-bottom:1rem;">Most challenges are quick to complete and typically take only a few seconds. If it takes longer, ensure your network is stable and follow the troubleshooting steps.</p>',
+              '<div style="background:var(--color-card-bg);border-left:3px solid var(--color-accent);padding:1rem 1.25rem;border-radius:8px;margin:1.5rem 0;font-size:0.9rem;color:var(--color-text-muted);">',
+                '<strong style="color:var(--color-text);">Note</strong><br>',
+                'If the issue persists, try switching to a different network or device to rule out any issues with your browser environment.<br><br>',
+                'Ensure your browser is updated to the latest version to maintain compatibility.',
+              '</div>',
+              '<h3 style="font-size:1.1rem;margin:1.5rem 0 0.75rem;">Troubleshooting</h3>',
+              '<p style="color:var(--color-text-muted);font-size:0.9rem;line-height:1.7;margin-bottom:1rem;">Follow the steps below to ensure that your environment is properly configured.</p>',
+              '<ol style="margin-bottom:1rem;color:var(--color-text-muted);font-size:0.9rem;line-height:1.7;padding-left:1.5rem;">',
+                '<li style="margin-bottom:0.75rem;"><strong style="color:var(--color-text);">Verify your browser compatibility.</strong>',
+                  '<ul style="padding-left:1.2rem;margin-top:0.25rem;margin-bottom:0;list-style:none;">',
+                    '<li style="position:relative;padding-left:1.2rem;margin-bottom:0.2rem;color:var(--color-text-muted);font-size:0.9rem;line-height:1.7;">&mdash; Turnstile supports all major browsers, except Internet Explorer.</li>',
+                    '<li style="position:relative;padding-left:1.2rem;margin-bottom:0.2rem;color:var(--color-text-muted);font-size:0.9rem;line-height:1.7;">&mdash; Ensure your browser is up to date.</li>',
+                  '</ul>',
+                '</li>',
+                '<li style="margin-bottom:0.75rem;"><strong style="color:var(--color-text);">Disable your browser extensions.</strong>',
+                  '<ul style="padding-left:1.2rem;margin-top:0.25rem;margin-bottom:0;list-style:none;">',
+                    '<li style="position:relative;padding-left:1.2rem;margin-bottom:0.2rem;color:var(--color-text-muted);font-size:0.9rem;line-height:1.7;">&mdash; Some browser extensions, such as ad blockers, may block the scripts Turnstile needs to operate.</li>',
+                    '<li style="position:relative;padding-left:1.2rem;margin-bottom:0.2rem;color:var(--color-text-muted);font-size:0.9rem;line-height:1.7;">&mdash; Temporarily disable all extensions and reload the page.</li>',
+                  '</ul>',
+                '</li>',
+                '<li style="margin-bottom:0.75rem;"><strong style="color:var(--color-text);">Enable JavaScript.</strong>',
+                  '<ul style="padding-left:1.2rem;margin-top:0.25rem;margin-bottom:0;list-style:none;">',
+                    '<li style="position:relative;padding-left:1.2rem;margin-bottom:0.2rem;color:var(--color-text-muted);font-size:0.9rem;line-height:1.7;">&mdash; Turnstile requires JavaScript to run. Ensure it is enabled in your browser settings. Refer to your browser\'s documentation for instructions on enabling JavaScript.</li>',
+                  '</ul>',
+                '</li>',
+                '<li style="margin-bottom:0.75rem;"><strong style="color:var(--color-text);">Try Incognito or Private mode.</strong>',
+                  '<ul style="padding-left:1.2rem;margin-top:0.25rem;margin-bottom:0;list-style:none;">',
+                    '<li style="position:relative;padding-left:1.2rem;margin-bottom:0.2rem;color:var(--color-text-muted);font-size:0.9rem;line-height:1.7;">&mdash; Use your browser\'s incognito or private mode to rule out issues caused by extensions or cached data.</li>',
+                  '</ul>',
+                '</li>',
+                '<li style="margin-bottom:0.75rem;"><strong style="color:var(--color-text);">Test another browser or device.</strong>',
+                  '<ul style="padding-left:1.2rem;margin-top:0.25rem;margin-bottom:0;list-style:none;">',
+                    '<li style="position:relative;padding-left:1.2rem;margin-bottom:0.2rem;color:var(--color-text-muted);font-size:0.9rem;line-height:1.7;">&mdash; Switch to a different browser or device to see if the issue is specific to your current setup.</li>',
+                  '</ul>',
+                '</li>',
+                '<li style="margin-bottom:0.75rem;"><strong style="color:var(--color-text);">Avoid VPNs or proxies.</strong>',
+                  '<ul style="padding-left:1.2rem;margin-top:0.25rem;margin-bottom:0;list-style:none;">',
+                    '<li style="position:relative;padding-left:1.2rem;margin-bottom:0.2rem;color:var(--color-text-muted);font-size:0.9rem;line-height:1.7;">&mdash; Some virtual private networks (VPN) or proxies may interfere with Turnstile. Disable them temporarily to test.</li>',
+                  '</ul>',
+                '</li>',
+                '<li style="margin-bottom:0.75rem;"><strong style="color:var(--color-text);">Switch to a different network.</strong>',
+                  '<ul style="padding-left:1.2rem;margin-top:0.25rem;margin-bottom:0;list-style:none;">',
+                    '<li style="position:relative;padding-left:1.2rem;margin-bottom:0.2rem;color:var(--color-text-muted);font-size:0.9rem;line-height:1.7;">&mdash; Your current network may have restrictions causing Turnstile challenges to fail. Try switching to another network, such as a mobile hotspot.</li>',
+                  '</ul>',
+                '</li>',
+              '</ol>',
+              '<p style="color:var(--color-text-muted);font-size:0.9rem;line-height:1.7;margin-bottom:1rem;">If none of the above resolves your issue, contact the website administrator with the error code and Ray ID or submit a feedback report through the Turnstile widget by selecting <strong style="color:var(--color-text);">Submit Feedback</strong>.</p>',
             '</div>',
           '</div>',
         '</div>',
         '<div class="modal-mtab-content" data-mtab="markdown" style="display:none;">',
           '<div style="border:1px solid var(--color-border);border-radius:0 0 16px 16px;overflow:hidden;max-height:60vh;overflow-y:auto;">',
             `<pre style="margin:0;padding:1.25rem 1.5rem;background:#1a1a1a;color:#e0e0e0;font-family:SF Mono,Fira Code,Cascadia Code,Consolas,monospace;font-size:0.8rem;line-height:1.7;overflow-x:auto;tab-size:2;">---
+title: Challenge solve issues
 content_type: troubleshooting
-title: Troubleshooting
-description: Resolve common issues with Cloudflare challenges, including loops and proxied hostnames.
+description: Fix challenge loops, unsupported browser errors, and other solve failures.
 products:
   - cloudflare-challenges
+sidebar:
+  order: 2
 ---
 
-## Common issues
+## Challenge loops
 
-### Proxied hostnames
+You may encounter a challenge loop where the challenge keeps reappearing without being solved. This is in very specific cases where we detect strong bot signals. If you are a legitimate human, you can follow the troubleshooting guide below to resolve the issue or submit a feedback report. Challenge loops can happen for several reasons:
 
-If your hostname is proxied through Cloudflare, visitors may experience challenges on your webpages.
+- **Network issues**: Poor or unstable network connections can prevent the challenge from being completed.
+- **Browser configuration**: Some browser settings or extensions may block the scripts needed to execute the challenge.
+- **Unsupported browsers**: Using a browser that is not supported by Turnstile.
+- **JavaScript disabled**: Turnstile relies on JavaScript to function properly.
+- **Detection errors**: If Turnstile suspects bot-like behavior, you may encounter repeated challenges for verification.
 
-Cloudflare issues challenges through the [Challenge Platform](/cloudflare-challenges/), which is the same underlying technology powering [Turnstile](/turnstile/).
+Most challenges are quick to complete and typically take only a few seconds. If it takes longer, ensure your network is stable and follow the [troubleshooting steps](#troubleshooting).
 
-In contrast to our Challenge page offerings, Turnstile allows you to run challenges anywhere on your site in a less-intrusive way without requiring the use of Cloudflare\'s CDN.
+:::note
+If the issue persists, try switching to a different network or device to rule out any issues with your browser environment.
 
-### Deprecated browser support
+Ensure your browser is updated to the latest version to maintain compatibility.
+:::
 
-Challenges are not supported by Microsoft Internet Explorer. If you are currently using Internet Explorer, try using another modern web browser (Chrome, Safari, Firefox). If you are already using a modern web browser, make sure it is using the latest version.
+## Troubleshooting
 
-### Referer header
+Follow the steps below to ensure that your environment is properly configured.
 
-Your visitor\'s HTTP request contains a referer header set to the website that they came from. When they encounter and solve a Challenge Page, the request with the referer is sent to the origin, and the response to the request is served to the user. The JavaScript on the response page may read the value of document.referer, but it will not be accurate.
+1. Verify your browser compatibility.
+    - Turnstile supports all major browsers, except Internet Explorer.
+    - Ensure your browser is up to date. 
+2. Disable your browser extensions.
+    - Some browser extensions, such as ad blockers, may block the scripts Turnstile needs to operate.
+    - Temporarily disable all extensions and reload the page.
+3. Enable JavaScript.
+    - Turnstile requires JavaScript to run. Ensure it is enabled in your browser settings. Refer to your browser's documentation for instructions on enabling JavaScript.
+4. Try Incognito or Private mode.
+    - Use your browser's incognito or private mode to rule out issues caused by extensions or cached data.
+5. Test another browser or device.
+    - Switch to a different browser or device to see if the issue is specific to your current setup.
+6. Avoid VPNs or proxies.
+    - Some virtual private networks (VPN) or proxies may interfere with Turnstile. Disable them temporarily to test.
+7. Switch to a different network.
+    - Your current network may have restrictions causing Turnstile challenges to fail. Try switching to another network, such as a mobile hotspot.
 
-For example, a visitor coming from a given website is challenged by a [WAF rule](/waf/custom-rules/) via an interstitial Challenge Page served by your domain. Once the visitor loads the website\'s home page, the document.referer value is your domain, not the origin website.
-
-This affects tools like Google Analytics, which reads the referer from JavaScript, since it replaces the previous website that visitors came from.
-
-You can add tracking scripts, such as the Google Tag Manager Javascript, within an existing [Challenge Page](/rules/custom-errors/) to capture the correct referer header on the initial request.
-
-**Example JavaScript**
-
-&lt;script&gt;
-    (function () {
-      const gaIds = {
-        "&lt;YOUR_DOMAIN&gt;": "&lt;GA_TRACKING_ID&gt;",
-      };
-
-      const gaId = gaIds[window.location.hostname];
-
-      if (gaId) {
-        const src = "https://www.googletagmanager.com/gtag/js?id=";
-
-        const gaScript = document.createElement("script");
-        gaScript.src = src.concat(gaId);
-        document.body.appendChild(gaScript);
-
-        window.dataLayer = window.dataLayer || [];
-        function gtag() {
-          dataLayer.push(arguments);
-        }
-        gtag("js", new Date());
-        gtag("config", gaId);
-      } else {
-        console.warn(
-          "Google Analytics ID not found for host:",
-          window.location.hostname,
-        );
-      }
-    })();
-  &lt;/script&gt;
-&lt;/body&gt;
-
-### Cross-origin resource sharing (CORS) preflight requests
-
-Cross-origin resource sharing (CORS) preflight requests, or OPTIONS, exclude user credentials that include cookies. As a result, the cf_clearance cookie will not be sent with the request, causing it to fail to bypass a Challenge Page (Non-interactive, Managed, or Interactive Challenge).
-
-### Challenges on Cloudflare-protected sites
-
-Cloudflare issues challenges to website visitors to protect against malicious activity, such as bot attacks and DDoS attempts. If a legitimate human visitor is unexpectedly challenged, the reason typically stems from a security feature flagging their request.
-
-| Source | Description |
-| --- | --- |
-| High threat score | IP addresses with a high-risk score trigger Challenges. |
-| IP reputation | If your IP has a history of suspicious activity, it may be flagged. |
-| Bot detection | Automated traffic resembling bots is filtered by Cloudflare. |
-| Web Application Firewall (WAF) custom rules | Site owners may set rules targeting specific regions or user agents. |
-| Browser Integrity Check | Cloudflare verifies that browsers meet certain standards. |
-| Challenge Passage | Technologies like Privacy Pass reduce the frequency of repeated Challenges. |
-
-To avoid repeated challenges, visitors can take the following steps to ensure their environment does not trigger security checks:
-
-- Ensure your web browser is updated to the latest stable version for full compatibility with modern challenge technologies.
-- Temporarily disable browser extensions, such as ad blockers or privacy tools, that may block standard browser headers or the necessary challenge scripts.
-- If your IP address has a poor reputation (often seen with shared VPNs or corporate proxies), try switching to a different, trusted network connection.</pre>`,
+If none of the above resolves your issue, contact the website administrator with the [error code](/turnstile/troubleshooting/client-side-errors/error-codes/) and Ray ID or submit a [feedback report](/turnstile/troubleshooting/feedback-reports/) through the Turnstile widget by selecting **Submit Feedback**.</pre>`,
           '</div>',
         '</div>'
       ].join('')
