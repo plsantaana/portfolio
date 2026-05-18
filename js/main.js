@@ -54,7 +54,10 @@
   function applyTheme(dark) {
     document.body.classList.toggle('dark-mode', dark);
     if (toggle) {
-      toggle.innerHTML = dark ? '&#x2600;&#xFE0F;' : '&#x1F319;';
+      var icon = toggle.querySelector('.theme-toggle-icon');
+      if (icon) {
+        icon.innerHTML = dark ? '&#x2600;&#xFE0F;' : '&#x1F319;';
+      }
       toggle.setAttribute('aria-label', dark ? 'Switch to light mode' : 'Switch to dark mode');
     }
   }
@@ -81,9 +84,26 @@
 
   // Toggle click
   if (toggle) {
+    var isFlipping = false;
     toggle.addEventListener('click', function () {
-      var isDark = !document.body.classList.contains('dark-mode');
-      setTheme(isDark);
+      if (isFlipping) return;
+      isFlipping = true;
+      var icon = toggle.querySelector('.theme-toggle-icon');
+      if (icon) {
+        icon.classList.add('flipping');
+        var isDark = !document.body.classList.contains('dark-mode');
+        setTimeout(function () {
+          setTheme(isDark);
+        }, 150);
+        setTimeout(function () {
+          icon.classList.remove('flipping');
+          isFlipping = false;
+        }, 300);
+      } else {
+        var isDark = !document.body.classList.contains('dark-mode');
+        setTheme(isDark);
+        isFlipping = false;
+      }
     });
   }
 
