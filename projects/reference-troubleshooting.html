@@ -127,11 +127,11 @@
       left: 0;
     }
     .doc-sample-body ol { counter-reset: num; }
-    .doc-sample-body ol li {
+    .doc-sample-body ol > li {
       counter-increment: num;
       padding-left: 2rem;
     }
-    .doc-sample-body ol li::before {
+    .doc-sample-body ol > li::before {
       content: counter(num) ".";
       position: absolute;
       left: 0;
@@ -252,44 +252,44 @@
             <p>Follow the steps below to ensure that your environment is properly configured.</p>
 
             <ol>
-              <li><strong>Verify your browser compatibility.</strong>
-                <ul>
-                  <li>[PRODUCT] supports all major browsers, except Internet Explorer.</li>
-                  <li>Ensure your browser is up to date.</li>
-                </ul>
-              </li>
-              <li><strong>Disable your browser extensions.</strong>
-                <ul>
-                  <li>Some browser extensions, such as ad blockers, may block the scripts [PRODUCT] needs to operate.</li>
-                  <li>Temporarily disable all extensions and reload the page.</li>
-                </ul>
-              </li>
-              <li><strong>Enable JavaScript.</strong>
-                <ul>
-                  <li>[PRODUCT] requires JavaScript to run. Ensure it is enabled in your browser settings. Refer to your browser's documentation for instructions on enabling JavaScript.</li>
-                </ul>
-              </li>
-              <li><strong>Try Incognito or Private mode.</strong>
-                <ul>
-                  <li>Use your browser's incognito or private mode to rule out issues caused by extensions or cached data.</li>
-                </ul>
-              </li>
-              <li><strong>Test another browser or device.</strong>
-                <ul>
-                  <li>Switch to a different browser or device to see if the issue is specific to your current setup.</li>
-                </ul>
-              </li>
-              <li><strong>Avoid VPNs or proxies.</strong>
-                <ul>
-                  <li>Some virtual private networks (VPN) or proxies may interfere with [PRODUCT]. Try disabling them temporarily to test.</li>
-                </ul>
-              </li>
-              <li><strong>Switch to a different network.</strong>
-                <ul>
-                  <li>Your current network may have restrictions causing [PRODUCT]  to fail. Try switching to another network, such as a mobile hotspot.</li>
-                </ul>
-              </li>
-            </ol>
+               <li><strong>Verify your browser compatibility.</strong>
+                 <ul>
+                   <li>[PRODUCT] supports all major browsers, except Internet Explorer.</li>
+                   <li>Ensure your browser is up to date.</li>
+                 </ul>
+               </li>
+               <li><strong>Disable your browser extensions.</strong>
+                 <ul>
+                   <li>Some browser extensions, such as ad blockers, may block the scripts [PRODUCT] needs to operate.</li>
+                   <li>Temporarily disable all extensions and reload the page.</li>
+                 </ul>
+               </li>
+               <li><strong>Enable JavaScript.</strong>
+                 <ul>
+                   <li>[PRODUCT] requires JavaScript to run. Ensure it is enabled in your browser settings. Refer to your browser's documentation for instructions on enabling JavaScript.</li>
+                 </ul>
+               </li>
+               <li><strong>Try Incognito or Private mode.</strong>
+                 <ul>
+                   <li>Use your browser's incognito or private mode to rule out issues caused by extensions or cached data.</li>
+                 </ul>
+               </li>
+               <li><strong>Test another browser or device.</strong>
+                 <ul>
+                   <li>Switch to a different browser or device to see if the issue is specific to your current setup.</li>
+                 </ul>
+               </li>
+               <li><strong>Avoid VPNs or proxies.</strong>
+                 <ul>
+                   <li>Some virtual private networks (VPN) or proxies may interfere with [PRODUCT]. Try disabling them temporarily to test.</li>
+                 </ul>
+               </li>
+               <li><strong>Switch to a different network.</strong>
+                 <ul>
+                   <li>Your current network may have restrictions causing [PRODUCT]  to fail. Try switching to another network, such as a mobile hotspot.</li>
+                 </ul>
+               </li>
+             </ol>
 
             <p>If none of the above resolves your issue, contact the website administrator with the error code and Ray ID or submit a feedback report through the [PRODUCT] widget by selecting <strong>Submit Feedback</strong>.</p>
 
@@ -301,7 +301,7 @@
       <div class="tab-content" id="tab-markdown">
         <div class="markdown-wrap">
 <pre>---
-<span class="hl-prop">title</span>: <span class="hl-str">[PRODUCT] issues</span>
+<span class="hl-prop">title</span>: <span class="hl-str">Product issues</span>
 <span class="hl-prop">content_type</span>: <span class="hl-str">troubleshooting</span>
 <span class="hl-prop">description</span>: <span class="hl-str">Fix loops, unsupported browser errors, and other solve failures.</span>
 <span class="hl-prop">sidebar</span>:
@@ -330,21 +330,21 @@ Ensure your browser is updated to the latest version to maintain compatibility.
 
 Follow the steps below to ensure that your environment is properly configured.
 
-1. <span class="hl-bold">**Verify your browser compatibility.**</span>
+<span class="hl-bullet">-</span> <span class="hl-bold">**Verify your browser compatibility.**</span>
     <span class="hl-bullet">-</span> [PRODUCT] supports all major browsers, except Internet Explorer.
     <span class="hl-bullet">-</span> Ensure your browser is up to date. 
-2. <span class="hl-bold">**Disable your browser extensions.**</span>
+<span class="hl-bullet">-</span> <span class="hl-bold">**Disable your browser extensions.**</span>
     <span class="hl-bullet">-</span> Some browser extensions, such as ad blockers, may block the scripts [PRODUCT] needs to operate.
     <span class="hl-bullet">-</span> Temporarily disable all extensions and reload the page.
-3. <span class="hl-bold">**Enable JavaScript.**</span>
+<span class="hl-bullet">-</span> <span class="hl-bold">**Enable JavaScript.**</span>
     <span class="hl-bullet">-</span> [PRODUCT] requires JavaScript to run. Ensure it is enabled in your browser settings. Refer to your browser's documentation for instructions on enabling JavaScript.
-4. <span class="hl-bold">**Try Incognito or Private mode.**</span>
+<span class="hl-bullet">-</span> <span class="hl-bold">**Try Incognito or Private mode.**</span>
     <span class="hl-bullet">-</span> Use your browser's incognito or private mode to rule out issues caused by extensions or cached data.
-5. <span class="hl-bold">**Test another browser or device.**</span>
+<span class="hl-bullet">-</span> <span class="hl-bold">**Test another browser or device.**</span>
     <span class="hl-bullet">-</span> Switch to a different browser or device to see if the issue is specific to your current setup.
-6. <span class="hl-bold">**Avoid VPNs or proxies.**</span>
+<span class="hl-bullet">-</span> <span class="hl-bold">**Avoid VPNs or proxies.**</span>
     <span class="hl-bullet">-</span> Some virtual private networks (VPN) or proxies may interfere with [PRODUCT]. Try disabling them temporarily to test.
-7. <span class="hl-bold">**Switch to a different network.**</span>
+<span class="hl-bullet">-</span> <span class="hl-bold">**Switch to a different network.**</span>
     <span class="hl-bullet">-</span> Your current network may have restrictions causing [PRODUCT] to fail. Try switching to another network, such as a mobile hotspot.
 
 If none of the above resolves your issue, contact the website administrator with the error code and Ray ID or submit a feedback report through the [PRODUCT] widget by selecting <span class="hl-bold">**Submit Feedback**</span>.</pre>
