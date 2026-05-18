@@ -218,13 +218,12 @@
     <div class="bubble">
       <h2>Get Started Guide</h2>
       <p style="color: var(--color-text-muted); margin-bottom: 1.5rem;">
-        Rewrote the Turnstile onboarding documentation with a security-first focus to reduce
-        implementation misconfigurations and improve developer clarity.
+        Rewrote the [PRODUCT] onboarding documentation with a security-first focus to reduce implementation misconfigurations and improve developer clarity.
       </p>
 
       <div class="project-context">
-        <p><strong>The Problem:</strong> Many developers were embedding Turnstile widgets without validating tokens server-side, leaving applications vulnerable despite appearing protected. The existing onboarding documentation lacked clear guidance on the complete implementation process, leading to frequent misconfigurations and support issues.</p>
-        <p style="margin-top: 0.75rem;"><strong>The Solution:</strong> I rewrote the Turnstile "Get Started" documentation with a security-first focus, clearly outlining the role of sitekeys and secret keys and providing a step-by-step implementation flow. The new documentation included setup options through the dashboard UI, API, and Terraform, along with guidance for mobile integrations, CAPTCHA migrations, and security best practices.</p>
+        <p><strong>The Problem:</strong> Many developers were embedding [PRODUCT] widgets without validating tokens server-side, leaving applications vulnerable despite appearing protected. The existing onboarding documentation lacked clear guidance on the complete implementation process, leading to frequent misconfigurations and support issues.</p>
+        <p style="margin-top: 0.75rem;"><strong>The Solution:</strong> I rewrote the [PRODUCT] Get Started documentation with a security-first focus, clearly outlining the role of sitekeys and secret keys and providing a step-by-step implementation flow. The new documentation included setup options through the dashboard UI, API, and Terraform, along with guidance for mobile integrations,  migrations, and security best practices.</p>
         <p style="margin-top: 0.75rem;"><strong>Results:</strong> Reduced support tickets related to implementation misconfiguration; fewer negative forum posts and developer complaints; and increased positive feedback around onboarding clarity and usability.</p>
       </div>
 
@@ -240,18 +239,18 @@
             <span class="dot"></span>
             <span class="dot"></span>
             <span class="dot"></span>
-            <span class="url-bar">developers.cloudflare.com / turnstile / get-started</span>
+            <span class="url-bar">patriciasantaana.com / product / get-started</span>
           </div>
           <div class="doc-sample-body">
             <h1>Get started</h1>
-            <p class="doc-desc">Set up Turnstile to verify visitors without a traditional CAPTCHA.</p>
+            <p class="doc-desc">Set up [PRODUCT] to verify visitors without a traditional CAPTCHA.</p>
 
-            <p>Turnstile protects your website forms from bots. It works in two steps: a JavaScript widget runs challenges in the visitor's browser and produces a token, then your server sends that token to Cloudflare to confirm it is valid. This guide covers how to set up both steps.</p>
+            <p>[PRODUCT] protects your website forms from bots. It works in two steps: a JavaScript widget runs [ACTIONS] in the visitor's browser and produces a token, then your server sends that token to [SYSTEM] to confirm it is valid. This guide covers how to set up both steps.</p>
 
             <h2>Prerequisites</h2>
             <p>Before you begin, you must have:</p>
             <ul>
-              <li>A Cloudflare account</li>
+              <li>A [SYSTEM] account</li>
               <li>A website or web application to protect</li>
               <li>Basic knowledge of HTML and your preferred server-side language</li>
             </ul>
@@ -259,7 +258,7 @@
             <hr style="border: none; border-top: 1px solid var(--color-border); margin: 2rem 0;">
 
             <h2>Process</h2>
-            <p>A Turnstile widget is an instance of Turnstile embedded on your webpage. Each widget has a <strong>sitekey</strong> (a public identifier you place in your HTML) and a <strong>secret key</strong> (a private credential your server uses to validate tokens).</p>
+            <p>A [PRODUCT] widget is an instance of [PRODUCT] embedded on your webpage. Each widget has a <strong>sitekey</strong> (a public identifier you place in your HTML) and a <strong>secret key</strong> (a private credential your server uses to validate tokens).</p>
             <p>Each widget gets its own unique sitekey and secret key pair, and options for configurations.</p>
 
             <table>
@@ -272,7 +271,7 @@
               <tbody>
                 <tr>
                   <td><strong>Sitekey</strong></td>
-                  <td>Public key used to invoke the Turnstile widget on your site.</td>
+                  <td>Public key used to invoke the [PRODUCT] widget on your site.</td>
                 </tr>
                 <tr>
                   <td><strong>Secret key</strong></td>
@@ -289,32 +288,32 @@
               <strong>Important</strong><br>Regardless of how you create and manage your widgets, you will still need to embed the widget on your webpage and validate the token on your server.
             </div>
 
-            <p>Implementing Turnstile involves two essential components that work together:</p>
+            <p>Implementing [PRODUCT] involves two essential components that work together:</p>
             <ol>
-              <li><strong>Client-side:</strong> Embed the widget — Add the Turnstile widget to your webpage to challenge visitors and generate tokens. A token is a string (up to 2,048 characters) generated when the visitor completes a challenge.</li>
-              <li><strong>Server-side:</strong> Validate the token — Send tokens to Cloudflare's Siteverify API to confirm they are authentic and have not been tampered with.</li>
+              <li><strong>Client-side:</strong> Embed the widget — Add the [PRODUCT] widget to your webpage to [ACTION] visitors and generate tokens. A token is a string (up to 2,048 characters) generated when the visitor completes a [ACTION].</li>
+              <li><strong>Server-side:</strong> Validate the token — Send tokens to [SYSTEM]'s Siteverify API to confirm they are authentic and have not been tampered with.</li>
             </ol>
 
-            <p>Turnstile is designed to be an independent service. You can use Turnstile on any website, regardless of whether it is proxied through the Cloudflare network. This allows for flexible deployment across multi-cloud environments, on-premises infrastructure, or sites using other CDNs. The client-side widget and server-side validation steps are completely self-contained.</p>
+            <p>[PRODUCT] is designed to be an independent service. You can use [PRODUCT] on any website, regardless of whether it is proxied through the [SYSTEM] network. This allows for flexible deployment across multi-cloud environments, on-premises infrastructure, or sites using other CDNs. The client-side widget and server-side validation steps are completely self-contained.</p>
 
             <h2>Implementation</h2>
-            <p>Follow the steps below to implement Turnstile.</p>
+            <p>Follow the steps below to implement [PRODUCT].</p>
 
             <h3>1. Create your widget</h3>
-            <p>First, you must create a Turnstile widget to get your sitekey and secret key.</p>
+            <p>First, you must create a [PRODUCT] widget to get your sitekey and secret key.</p>
             <p>Select your preferred implementation method:</p>
             <div class="link-buttons">
-               <a class="link-btn">Cloudflare dashboard</a>
+               <a class="link-btn">UI dashboard</a>
                <a class="link-btn">API</a>
                <a class="link-btn">Terraform</a>
             </div>
 
             <h3>2. Embed the widget</h3>
-            <p>Add the Turnstile widget to your webpage forms and applications.</p>
+            <p>Add the [PRODUCT] widget to your webpage forms and applications.</p>
             <p>Refer to Embed the widget to learn more about implicit and explicit rendering methods.</p>
 
             <div class="doc-note">
-              <strong>Testing</strong><br>You can test your Turnstile widget on your webpage without triggering an actual Cloudflare Challenge by using a testing sitekey.
+              <strong>Testing</strong><br>You can test your [PRODUCT] widget on your webpage without triggering an actual [ACTION] by using a testing sitekey.
             </div>
 
             <h3>3. Validate tokens</h3>
@@ -330,15 +329,15 @@
             <h3>Mobile configuration</h3>
             <p>Special considerations are necessary for mobile applications and WebView implementations.</p>
 
-            <h3>Migration from other CAPTCHAs</h3>
-            <p>If you are currently using reCAPTCHA, hCaptcha, or another CAPTCHA service, Turnstile can be a drop-in replacement. You can copy and paste our script wherever you have deployed the existing script today.</p>
+            <h3>Migration from other services</h3>
+            <p>If you are currently using an alternate service, [PRODUCT] can be a drop-in replacement. You can copy and paste our script wherever you have deployed the existing script today.</p>
 
             <hr style="border: none; border-top: 1px solid var(--color-border); margin: 2rem 0;">
 
             <h2>Security requirements</h2>
             <ul>
-              <li><strong>Server-side validation is mandatory.</strong> It is critical to enforce Turnstile tokens with the Siteverify API. The Turnstile token could be invalid, expired, or already redeemed. Not verifying the token will leave major vulnerabilities in your implementation. You must call Siteverify to complete your Turnstile configuration. Otherwise, it is incomplete and will result in zeroes for token validation when viewing your metrics in Turnstile Analytics.</li>
-              <li><strong>Tokens expire after 300 seconds (5 minutes).</strong> Each token can only be validated once. Expired or used tokens must be replaced with fresh challenges.</li>
+              <li><strong>Server-side validation is mandatory.</strong> It is critical to enforce [PRODUCT] tokens with the Siteverify API. The [PRODUCT] token could be invalid, expired, or already redeemed. Not verifying the token will leave major vulnerabilities in your implementation. You must call Siteverify to complete your [PRODUCT] configuration. Otherwise, it is incomplete and will result in zeroes for token validation when viewing your metrics in Analytics.</li>
+              <li><strong>Tokens expire after 300 seconds (5 minutes).</strong> Each token can only be validated once. Expired or used tokens must be replaced with fresh [ACTIONS].</li>
             </ul>
 
             <h2>Best practices</h2>
@@ -369,22 +368,18 @@
 <pre>---
 <span class="hl-prop">title</span>: <span class="hl-str">Get started</span>
 <span class="hl-prop">content_type</span>: <span class="hl-str">get-started</span>
-<span class="hl-prop">description</span>: <span class="hl-str">Set up Turnstile to verify visitors without a traditional CAPTCHA.</span>
-<span class="hl-prop">products</span>:
-  <span class="hl-bullet">-</span> <span class="hl-str">turnstile</span>
+<span class="hl-prop">description</span>: <span class="hl-str">Set up [PRODUCT] to verify visitors without a traditional CAPTCHA.</span>
 <span class="hl-prop">sidebar</span>:
   <span class="hl-prop">order</span>: <span class="hl-op">4</span>
 ---
 
-<span class="hl-kw">import</span> { <span class="hl-fn">Render</span>, <span class="hl-fn">LinkButton</span>, <span class="hl-fn">GlossaryTooltip</span> } <span class="hl-kw">from</span> <span class="hl-str">"~/components"</span>;
-
-Turnstile protects your website forms from bots. It works in two steps: a JavaScript widget runs challenges in the visitor's browser and produces a token, then your server sends that token to Cloudflare to confirm it is valid. This guide covers how to set up both steps.
+[PRODUCT] protects your website forms from bots. It works in two steps: a JavaScript widget runs [ACTIONS] in the visitor's browser and produces a token, then your server sends that token to [SYSTEM] to confirm it is valid. This guide covers how to set up both steps.
 
 <span class="hl-head">##</span> Prerequisites
 
 Before you begin, you must have:
 
-<span class="hl-bullet">-</span> [A Cloudflare account](/fundamentals/account/create-account/)
+<span class="hl-bullet">-</span> A [SYSTEM] account
 <span class="hl-bullet">-</span> A website or web application to protect
 <span class="hl-bullet">-</span> Basic knowledge of HTML and your preferred server-side language
 
@@ -392,67 +387,65 @@ Before you begin, you must have:
 
 <span class="hl-head">##</span> Process
 
-A Turnstile widget is an instance of Turnstile embedded on your webpage. Each widget has a &lt;GlossaryTooltip term="sitekey"&gt;sitekey&lt;/GlossaryTooltip&gt; (a public identifier you place in your HTML) and a &lt;GlossaryTooltip term="secret key"&gt;secret key&lt;/GlossaryTooltip&gt; (a private credential your server uses to validate tokens).
+A [PRODUCT] widget is an instance of [PRODUCT] embedded on your webpage. Each widget has a &lt;GlossaryTooltip term="sitekey"&gt;sitekey&lt;/GlossaryTooltip&gt; (a public identifier you place in your HTML) and a &lt;GlossaryTooltip term="secret key"&gt;secret key&lt;/GlossaryTooltip&gt; (a private credential your server uses to validate tokens).
 
 Each widget gets its own unique sitekey and secret key pair, and options for configurations.
 
 | Component | Description |
 | <span class="hl-op">---</span> | <span class="hl-op">---</span> |
-| Sitekey | Public key used to invoke the Turnstile widget on your site. |
+| Sitekey | Public key used to invoke the [PRODUCT] widget on your site. |
 | Secret key | Private key used for server-side token validation. |
 | Configurations | Mode, hostnames, appearance settings, and other options. |
 
 <span class="hl-head">:::</span><span class="hl-prop">note</span>[Important]
 
-Regardless of how you create and manage your widgets, you will still need to [embed the widget](/turnstile/get-started/client-side-rendering/) on your webpage and [validate the token](/turnstile/get-started/server-side-validation/) on your server.
+Regardless of how you create and manage your widgets, you will still need to embed the widget on your webpage and validate the token on your server.
 <span class="hl-head">::</span>
 
-Implementing Turnstile involves two essential components that work together:
+Implementing [PRODUCT] involves two essential components that work together:
 
-1. Client-side: [Embed the widget](/turnstile/get-started/client-side-rendering/)
+1. Client-side: Embed the widget
 
-   Add the Turnstile widget to your webpage to challenge visitors and generate tokens. A token is a string (up to 2,048 characters) generated when the visitor completes a challenge.
+   Add the [PRODUCT] widget to your webpage to [ACTION] visitors and generate tokens. A token is a string (up to 2,048 characters) generated when the visitor completes a [ACTION].
 
-2. Server-side: [Validate the token](/turnstile/get-started/server-side-validation/)
+2. Server-side: Validate the token
 
-   Send tokens to Cloudflare's [Siteverify API](/turnstile/get-started/server-side-validation/) — the endpoint for validating Turnstile tokens — to confirm they are authentic and have not been tampered with.
+   Send tokens to [SYSTEM]'s Siteverify API to confirm they are authentic and have not been tampered with.
 
-Turnstile is designed to be an independent service. You can use Turnstile on any website, regardless of whether it is proxied through the Cloudflare network. This allows for flexible deployment across multi-cloud environments, on-premises infrastructure, or sites using other CDNs. The client-side widget and server-side validation steps are completely self-contained.
-
-Refer to [Implementation](#implementation) below for guidance on how to implement Turnstile on your website.
+[PRODUCT] is designed to be an independent service. You can use [PRODUCT] on any website, regardless of whether it is proxied through the [SYSTEM] network. This allows for flexible deployment across multi-cloud environments, on-premises infrastructure, or sites using other CDNs. The client-side widget and server-side validation steps are completely self-contained.
 
 ---
 
 <span class="hl-head">##</span> Implementation
 
-Follow the steps below to implement Turnstile.
+Follow the steps below to implement [PRODUCT].
 
 <span class="hl-head">###</span> 1. Create your widget
 
-First, you must create a Turnstile widget to get your sitekey and secret key.
+First, you must create a [PRODUCT] widget to get your sitekey and secret key.
 
 Select your preferred implementation method:
 
-<span class="hl-bullet">-</span> [Cloudflare dashboard](/turnstile/get-started/widget-management/dashboard/)
-<span class="hl-bullet">-</span> [API](/turnstile/get-started/widget-management/api/)
-<span class="hl-bullet">-</span> [Terraform](/turnstile/get-started/widget-management/terraform/)
+<span class="hl-bullet">-</span> UI dashboard
+<span class="hl-bullet">-</span> API
+<span class="hl-bullet">-</span> Terraform
 
 <span class="hl-head">###</span> 2. Embed the widget
 
-Add the Turnstile widget to your webpage forms and applications.
+Add the [PRODUCT] widget to your webpage forms and applications.
 
-Refer to [Embed the widget](/turnstile/get-started/client-side-rendering/) to learn more about implicit and explicit rendering methods.
+Refer to Embed the widget to learn more about implicit and explicit rendering methods.
 
 <span class="hl-head">:::</span><span class="hl-prop">note</span>[Testing]
 
-You can test your Turnstile widget on your webpage without triggering an actual Cloudflare Challenge by using a testing sitekey.
+You can test your [PRODUCT] widget on your webpage without triggering an actual [ACTION] by using a testing sitekey.
 <span class="hl-head">::</span>
 
 <span class="hl-head">###</span> 3. Validate tokens
 
 Implement server-side validation to verify the tokens generated by your widgets.
 
-Refer to [Validate the token](/turnstile/get-started/server-side-validation/) to secure your implementation with proper token verification.
+Refer to Validate the token to secure your implementation with proper token verification.
 
 <span class="hl-head">:::</span><span class="hl-prop">note</span>[Testing]
 
@@ -465,20 +458,16 @@ You can test the dummy token generated with testing sitekey via Siteverify API w
 
 Special considerations are necessary for mobile applications and WebView implementations.
 
-Refer to [Mobile implementation](/turnstile/get-started/mobile-implementation/) for more information on mobile application integration.
+<span class="hl-head">###</span> Migration from other services
 
-<span class="hl-head">###</span> Migration from other CAPTCHAs
-
-If you are currently using reCAPTCHA, hCaptcha, or another CAPTCHA service, Turnstile can be a drop-in replacement. You can copy and paste our script wherever you have deployed the existing script today.
-
-Refer to [Migration](/turnstile/migration/) for step-by-step migration guidance from other CAPTCHA services.
+If you are currently using an alternate service, [PRODUCT] can be a drop-in replacement. You can copy and paste our script wherever you have deployed the existing script today.
 
 ---
 
 <span class="hl-head">##</span> Security requirements
 
-<span class="hl-bullet">-</span> Server-side validation is mandatory. It is critical to enforce Turnstile tokens with the Siteverify API. The Turnstile token could be invalid, expired, or already redeemed. Not verifying the token will leave major vulnerabilities in your implementation. You must call Siteverify to complete your Turnstile configuration. Otherwise, it is incomplete and will result in zeroes for token validation when viewing your metrics in <span class="hl-code">[Turnstile Analytics](/turnstile/turnstile-analytics/)</span>.
-<span class="hl-bullet">-</span> Tokens expire after 300 seconds (5 minutes). Each token can only be validated once. Expired or used tokens must be replaced with fresh challenges.
+<span class="hl-bullet">-</span> <strong>Server-side validation is mandatory.</strong> It is critical to enforce [PRODUCT] tokens with the Siteverify API. The [PRODUCT] token could be invalid, expired, or already redeemed. Not verifying the token will leave major vulnerabilities in your implementation. You must call Siteverify to complete your [PRODUCT] configuration. Otherwise, it is incomplete and will result in zeroes for token validation when viewing your metrics in Analytics.
+<span class="hl-bullet">-</span> <strong>Tokens expire after 300 seconds (5 minutes).</strong> Each token can only be validated once. Expired or used tokens must be replaced with fresh [ACTIONS].
 
 ---
 
