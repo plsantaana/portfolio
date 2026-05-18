@@ -223,9 +223,9 @@
 
       <div class="project-context">
         <h3 style="font-size:1rem;font-weight:600;color:var(--color-text);margin:0 0 0.25rem 0;">The Problem</h3>
-        <p style="margin:0;">Many developers were embedding [PRODUCT] widgets without validating tokens server-side, leaving applications vulnerable despite appearing protected. The existing onboarding documentation lacked clear guidance on the complete implementation process, leading to frequent misconfigurations and support issues.</p>
+        <p style="margin:0;">Many developers were embedding the product without validating tokens server-side, leaving applications vulnerable despite appearing protected. The existing onboarding documentation lacked clear guidance on the complete implementation process, leading to frequent misconfigurations and support issues.</p>
         <h3 style="font-size:1rem;font-weight:600;color:var(--color-text);margin:1.25rem 0 0.25rem 0;">The Solution</h3>
-        <p style="margin:0;">I rewrote the [PRODUCT] Get Started documentation with a security-first focus, clearly outlining the role of sitekeys and secret keys and providing a step-by-step implementation flow. The new documentation included setup options through the dashboard UI, API, and Terraform, along with guidance for mobile integrations,  migrations, and security best practices.</p>
+        <p style="margin:0;">I rewrote the get started documentation with a security-first focus, clearly outlining the role of sitekeys and secret keys and providing a step-by-step implementation flow. The new documentation included setup options through the dashboard UI, API, and Terraform, along with guidance for mobile integrations,  migrations, and security best practices.</p>
         <h3 style="font-size:1rem;font-weight:600;color:var(--color-text);margin:1.25rem 0 0.25rem 0;">Results</h3>
         <p style="margin:0;">Reduced support tickets related to implementation misconfiguration; fewer negative forum posts and developer complaints; and increased positive feedback around onboarding clarity and usability.</p>
       </div>
@@ -507,6 +507,26 @@ If you are currently using an alternate service, [PRODUCT] can be a drop-in repl
           document.getElementById(id).classList.add('active');
         });
       });
+
+      function highlightPlaceholders(root) {
+        if (!root) return;
+        var walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, null, false);
+        var nodes = [];
+        while (walker.nextNode()) { nodes.push(walker.currentNode); }
+        for (var i = 0; i < nodes.length; i++) {
+          var node = nodes[i];
+          var text = node.textContent;
+          if (/\[[A-Z]+\d*(?:\s+\d+)?\]/.test(text)) {
+            var span = document.createElement('span');
+            span.innerHTML = text.replace(
+              /(\[[A-Z]+\d*(?:\s+\d+)?\])/g,
+              '<span class="placeholder">$1</span>'
+            );
+            node.parentNode.replaceChild(span, node);
+          }
+        }
+      }
+      highlightPlaceholders(document.querySelector('.doc-sample-body'));
     })();
   </script>
   <script src="../js/main.js"></script>
