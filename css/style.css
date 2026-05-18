@@ -123,6 +123,7 @@ img {
   flex-direction: column;
   flex: 1;
   margin-bottom: 0;
+  padding: 1.5rem;
 }
 .split-right .bubble:first-child .project-card {
   display: flex;
@@ -203,6 +204,9 @@ img {
 
 .split-right .projects-grid {
   grid-template-columns: 1fr;
+  gap: 1rem;
+  flex: 1;
+  grid-auto-rows: 1fr;
 }
 
 .split-right .project-card {
