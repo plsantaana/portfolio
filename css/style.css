@@ -304,20 +304,6 @@ img {
   box-shadow: 0 12px 24px rgba(0, 0, 0, 0.06);
 }
 
-.project-card-image {
-  width: 100%;
-  aspect-ratio: 16 / 9;
-  background: var(--color-border);
-  margin-bottom: 1.5rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--color-text-muted);
-  font-size: 0.8rem;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-}
-
 .project-card h3 {
   font-size: 1.25rem;
   margin-bottom: 0.5rem;
