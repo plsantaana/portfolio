@@ -107,6 +107,26 @@
     });
   }
 
+  // Highlight placeholders like [PRODUCT], [FEATURE], [SYSTEM], [ACTION]
+  function highlightPlaceholders(root) {
+    if (!root) return;
+    var walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, null, false);
+    var nodes = [];
+    while (walker.nextNode()) { nodes.push(walker.currentNode); }
+    for (var i = 0; i < nodes.length; i++) {
+      var node = nodes[i];
+      var text = node.textContent;
+      if (/\[[A-Z]+\d*(?:\s+\d+)?\]/.test(text)) {
+        var span = document.createElement('span');
+        span.innerHTML = text.replace(
+          /(\[[A-Z]+\d*(?:\s+\d+)?\])/g,
+          '<span class="placeholder">$1</span>'
+        );
+        node.parentNode.replaceChild(span, node);
+      }
+    }
+  }
+
   // Project modal
   var projectModal = document.getElementById('project-modal');
   var projectModalClose = document.getElementById('project-modal-close');
@@ -497,6 +517,9 @@ If none of the above resolves your issue, contact the website administrator with
         if (target) target.style.display = 'block';
       });
     });
+
+    var renderedTab = projectModalContent.querySelector('.modal-mtab-content[data-mtab="rendered"]');
+    if (renderedTab) highlightPlaceholders(renderedTab);
 
     projectModal.classList.add('open');
     document.body.classList.add('modal-open');

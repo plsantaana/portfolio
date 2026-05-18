@@ -689,3 +689,17 @@ body.dark-mode #resume-modal .resume-item ul li {
 .hl-bold { color: #e0e0e0; font-weight: 600; }
 .hl-head { color: #e06c75; }
 
+/* Placeholder highlighting */
+.placeholder {
+  display: inline-block;
+  padding: 0.08em 0.35em;
+  border-radius: 4px;
+  font-weight: 600;
+  color: var(--color-text);
+  background: rgba(0,0,0,0.06);
+}
+
+body.dark-mode .placeholder {
+  background: rgba(255,255,255,0.1);
+}
+
