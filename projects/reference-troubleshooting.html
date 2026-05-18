@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Troubleshooting — Patricia Santa Ana</title>
+  <title>Reference &amp; Troubleshooting — Patricia Santa Ana</title>
   <link rel="stylesheet" href="../css/style.css">
   <style>
     .project-context {
@@ -248,7 +248,7 @@
               Ensure your browser is updated to the latest version to maintain compatibility.
             </div>
 
-            <h2>Troubleshooting</h2>
+      <h2>Reference &amp; Troubleshooting</h2>
             <p>Follow the steps below to ensure that your environment is properly configured.</p>
 
             <ol>
@@ -355,15 +355,19 @@ If none of the above resolves your issue, contact the website administrator with
   </div>
 
   <script>
-    // Tab switching
-    document.querySelectorAll('.tab-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-        document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
-        btn.classList.add('active');
-        document.getElementById('tab-' + btn.dataset.tab).classList.add('active');
+    (function() {
+      var tabs = document.querySelectorAll('.tab-btn');
+      tabs.forEach(function(btn) {
+        btn.addEventListener('click', function() {
+          tabs.forEach(function(b) { b.classList.remove('active'); });
+          btn.classList.add('active');
+          document.querySelectorAll('.tab-content').forEach(function(c) { c.classList.remove('active'); });
+          var id = 'tab-' + btn.getAttribute('data-tab');
+          document.getElementById(id).classList.add('active');
+        });
       });
-    });
+    })();
   </script>
+  <script src="../js/main.js"></script>
 </body>
 </html>
