@@ -311,7 +311,7 @@
             <h4>[FEATURE 2]</h4>
             <p>[FEATURE 2] is when [SYSTEM] dynamically chooses the appropriate type of [FEATURE] served to the visitor based on the characteristics of a request from the signals indicated by their browser. This helps avoid CAPTCHAs, which also reduces the lifetimes of human time spent solving CAPTCHAs across the Internet.</p>
 
-            <p>Most human visitors are automatically verified and the [FEATURE] page will display <strong>Successful</strong>. However, if [SYSTEM] detects non-human attributes from the visitor&#39;s browser, they may be required to interact with the challenge to solve it.</p>
+            <p>Most human visitors are automatically verified and the [FEATURE] page will display <strong>Successful</strong>. However, if [SYSTEM] detects non-human attributes from the visitor&#39;s browser, they may be required to interact with the [FEATURE] to solve it.</p>
 
             <p>[SYSTEM] recommends [FEATURE 2] for most [ACTIONS]. Unless there are specific compatibility issues, do not use other [FEATURE] types.</p>
 
@@ -334,90 +334,84 @@
         <div class="markdown-wrap">
 <pre>---
 content_type: concept
-title: How Challenges work
-description: How Cloudflare issues challenges through WAF rules, Bot Management, and Bot Fight Mode.
-products:
-  - cloudflare-challenges
+title: How [FEATURE] works
+description: How [SYSTEM] issues [FEATURES] through [PRODUCT].
 sidebar:
   order: 1
-  label: Challenges
 ---
 
-Challenges can be issued in three primary ways depending on which Cloudflare products or features are in use. Each method is designed to balance security with seamless visitor experience.
+[FEATURE] can be issued in three primary ways depending on which products or features are in use. Each method is designed to balance security with seamless visitor experience.
 
-| Product | Challenge type(s) |
-| ------- | ----------------- |
-| [WAF](<span class="hl-link">/waf/</span>) ([custom rules](<span class="hl-link">/waf/custom-rules/</span>), [rate limiting rules](<span class="hl-link">/waf/rate-limiting-rules/</span>), [IP access rules](<span class="hl-link">/waf/tools/ip-access-rules/</span>)) | [Interstitial Challenge Page](<span class="hl-link">/cloudflare-challenges/challenge-types/challenge-pages/</span>) |
-| [Bot Management](<span class="hl-link">/bots/get-started/bot-management/</span>) | [JavaScript Detections](<span class="hl-link">/bots/additional-configurations/javascript-detections/</span>) |
-| [Bot Fight Mode](<span class="hl-link">/bots/get-started/bot-fight-mode/</span>), [Super Bot Fight Mode](<span class="hl-link">/bots/get-started/super-bot-fight-mode/</span>) | [Interstitial Challenge Page](<span class="hl-link">/cloudflare-challenges/challenge-types/challenge-pages/</span>) |
-| [Turnstile](<span class="hl-link">/turnstile/</span>) | Embedded widget |
-| [HTTP DDoS attack protection](<span class="hl-link">/ddos-protection/managed-rulesets/http/</span>) | Any Challenge |
-| [Under Attack Mode](<span class="hl-link">/fundamentals/reference/under-attack-mode/</span>) | [Managed Challenge](<span class="hl-link">/cloudflare-challenges/challenge-types/challenge-pages/#managed-challenge</span>) |
-
-Challenge Pages and Turnstile rely on the same underlying mechanism to issue challenges to your website or application&#39;s visitors.
-
-JavaScript Detections is an optional feature within [Bot Management](<span class="hl-link">/bots/get-started/bot-management/</span>). When enabled, Cloudflare injects a JavaScript snippet into HTML responses to gather client-side signals. Unlike Challenge Pages, JavaScript Detections runs on every HTML request without pausing or interrupting the visitor. It populates a pass/fail result (<span class="hl-code">`cf.bot_management.js_detection.passed`</span>) that you can then act on using a [WAF custom rule](<span class="hl-link">/waf/custom-rules/</span>).
+| Product | Feature type(s) |
+| ------- | --------------- |
+| Product A | Feature 1 |
+| Product B | Feature 2 |
+| Product C | Feature 3 |
 
 ---
 
-<span class="hl-head">##</span> Available challenges
+<span class="hl-head">##</span> Available [FEATURES]
 
-Refer to the following pages for more information on the different challenge types:
+Refer to the following pages for more information on the different [FEATURE] types:
 
-<span class="hl-bullet">-</span> [Interstitial Challenge Pages](<span class="hl-link">/cloudflare-challenges/challenge-types/challenge-pages/</span>)
-<span class="hl-bullet">-</span> [Turnstile](<span class="hl-link">/cloudflare-challenges/challenge-types/turnstile/</span>)
-<span class="hl-bullet">-</span> [JavaScript Detections](<span class="hl-link">/cloudflare-challenges/challenge-types/javascript-detections/</span>)
+<span class="hl-bullet">-</span> Feature 1
+<span class="hl-bullet">-</span> Feature 2
+<span class="hl-bullet">-</span> Feature 3
 
 ---
 
 <span class="hl-head">##</span> Limitations
 
-Cloudflare Challenges cannot support the following:
+[FEATURES] cannot support the following:
 
-<span class="hl-bullet">-</span> [Browser extensions](<span class="hl-link">/cloudflare-challenges/reference/supported-browsers/#browser-extensions</span>) that modify the browser&#39;s <span class="hl-code">`User-Agent`</span> value or Web APIs such as <span class="hl-code">`Canvas`</span> and <span class="hl-code">`WebGL`</span>.
-<span class="hl-bullet">-</span> Implementations where a domain serves a challenge page originally requested for another domain.
-<span class="hl-bullet">-</span> Challenge Pages cannot be embedded in cross-origin iframes.
-<span class="hl-bullet">-</span> Client software where the solve request of a Managed Challenge comes from a different IP than the original IP a Challenge request was issued to. For example, if you receive the Challenge from one IP and solve it using another IP, the solve is not valid and you may encounter a Challenge loop.
+<span class="hl-bullet">-</span> Browser extensions that modify the browser&#39;s User-Agent value or Web APIs such as Canvas and WebGL.
+<span class="hl-bullet">-</span> Implementations where a domain serves a [FEATURE] originally requested for another domain.
+<span class="hl-bullet">-</span> [FEATURE] cannot be embedded in cross-origin iframes.
+<span class="hl-bullet">-</span> Client software where the solve request of a [FEATURE] comes from a different IP than the original IP it was issued to. For example, if you receive the [FEATURE] from one IP and interact with it from another IP, the solve is not valid and you may encounter a loop.
 
 ---
 
-An interstitial Challenge Page (a full-page screen that appears before the visitor reaches the destination URL) acts as a gate between the visitor and your website or application while Cloudflare verifies the authenticity of the visitor.
+<span class="hl-head">##</span> [FEATURE]
 
-The Challenge Page intercepts the visitor from getting to the destination URL by holding the request and evaluating the browser environment for automated signals, and serving a challenge. The visitor cannot reach their destination without passing the challenge. Based on the signals indicated by their browser environment, the visitor may be asked to perform an interaction such as checking a box or selecting a button for further probing.
+A [FEATURE] page acts as a gate between the visitor and your website or application while [SYSTEM] verifies the authenticity of the visitor.
 
-You can implement a Challenge Page to your website or application by creating a WAF custom rule.
+The [FEATURE] page intercepts the visitor from getting to the destination URL by holding the request and evaluating the browser environment for automated signals, and serving a [FEATURE]. The visitor cannot reach their destination without passing the [FEATURE]. Based on the signals indicated by their browser environment, the visitor may be asked to perform an interaction such as checking a box or selecting a button for further probing.
 
-The level of interactivity and visibility of the Challenge Page depends on the Action that you select when creating the WAF rule for your website or application.
+You can implement a [FEATURE] page to your website or application by creating an [ACTION].
 
-<span class="hl-head">##</span> Actions
+[FEATURE] is triggered by an [ACTION].
 
-The following challenge types are the available actions when you create a WAF rule for a Challenge Page.
+The level of interactivity and visibility of the [FEATURE] page depends on the [ACTION] that you select for your website or application.
 
-<span class="hl-head">###</span> Non-Interactive Challenges
+<span class="hl-head">###</span> Actions
 
-With a Non-Interactive Challenge, Cloudflare makes the determination on whether or not the visitor is automated based on the limited information attained from their browser signals via an injected JavaScript. Then, it presents a Challenge Page that requires no interaction from a visitor except the JavaScript processed by their browser.
+The following [FEATURE] types are available:
+
+<span class="hl-head">####</span> [FEATURE 1]
+
+With [FEATURE 1], [SYSTEM] makes the determination on whether or not the visitor is automated based on the limited information attained from their browser signals via an injected JavaScript. Then, it presents a [FEATURE] page that requires no interaction from a visitor except the JavaScript processed by their browser.
 
 The visitor must wait until their browser finishes processing the JavaScript, which typically takes less than five seconds.
 
-If the visitor passes the challenge, the original request continues to the destination URL. If the challenge fails or cannot be completed, the visitor is presented with another interstitial Challenge Page.
+If the visitor passes the [FEATURE], the original request continues to the destination URL. If the [FEATURE] fails or cannot be completed, the visitor is presented with another [FEATURE] page.
 
-<span class="hl-head">###</span> Managed Challenges
+<span class="hl-head">####</span> [FEATURE 2]
 
-Managed Challenges are where Cloudflare dynamically chooses the appropriate type of challenge served to the visitor based on the characteristics of a request from the signals indicated by their browser. This helps avoid [CAPTCHAs](<span class="hl-link">https://www.cloudflare.com/learning/bots/how-captchas-work/</span>), which also reduces the lifetimes of human time spent solving CAPTCHAs across the Internet.
+[FEATURE 2] is when [SYSTEM] dynamically chooses the appropriate type of [FEATURE] served to the visitor based on the characteristics of a request from the signals indicated by their browser. This helps avoid CAPTCHAs, which also reduces the lifetimes of human time spent solving CAPTCHAs across the Internet.
 
-Most human visitors are automatically verified and the Challenge Page will display **Successful**. However, if Cloudflare detects non-human attributes from the visitor&#39;s browser, they may be required to interact with the challenge to solve it.
+Most human visitors are automatically verified and the [FEATURE] page will display **Successful**. However, if [SYSTEM] detects non-human attributes from the visitor&#39;s browser, they may be required to interact with the [FEATURE] to solve it.
 
-Cloudflare recommends Managed Challenges for most WAF rules. Unless there are specific compatibility issues, do not use other challenge types.
+[SYSTEM] recommends [FEATURE 2] for most [ACTIONS]. Unless there are specific compatibility issues, do not use other [FEATURE] types.
 
 <span class="hl-head">:::</span><span class="hl-prop">caution</span>
-Using Cloudflare Challenges along with Rules features may cause challenge loops. Refer to [Rules troubleshooting](<span class="hl-link">/rules/reference/troubleshooting/</span>) for more information.
+Using [FEATURE] along with [PRODUCT] may cause loops. Refer to [PRODUCT] troubleshooting for more information.
 <span class="hl-head">::</span>
 
-<span class="hl-head">###</span> Interactive Challenges
+<span class="hl-head">####</span> [FEATURE 3]
 
-Interactive Challenge Pages require a visitor to interact with the challenge to pass.
+[FEATURE 3] requires a visitor to interact with the feature to pass.
 
-Cloudflare always recommends using a Managed Challenge.
+[SYSTEM] always recommends using [FEATURE 2].
 </pre>
         </div>
       </div>
